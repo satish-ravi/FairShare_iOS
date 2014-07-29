@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import "TripsTableViewController.h"
 
 @interface LoginViewController ()
 
@@ -18,6 +19,14 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
+        PFUser *usr = [PFUser currentUser];
+        NSLog(usr.username);
+        NSLog(@"User logged in already");
+        [self.navigationController pushViewController:[[TripsTableViewController alloc] initWithStyle:UITableViewStylePlain] animated:NO];
+        
+    }
+    
 }
 - (IBAction)loginClicked:(id)sender {
     NSArray *permissionsArray = @[ @"user_about_me", @"user_relationships", @"user_birthday", @"user_location"];
@@ -38,10 +47,10 @@
             }
         } else if (user.isNew) {
             NSLog(@"User with facebook signed up and logged in!");
-      //      [self.navigationController pushViewController:[[UserDetailsViewController alloc] initWithStyle:UITableViewStyleGrouped] animated:YES];
+            [self.navigationController pushViewController:[[TripsTableViewController alloc] initWithStyle:UITableViewStyleGrouped] animated:YES];
         } else {
             NSLog(@"User with facebook logged in!");
-      //      [self.navigationController pushViewController:[[UserDetailsViewController alloc] initWithStyle:UITableViewStyleGrouped] animated:YES];
+            [self.navigationController pushViewController:[[TripsTableViewController alloc] initWithStyle:UITableViewStyleGrouped] animated:YES];
         }
     }];
 
