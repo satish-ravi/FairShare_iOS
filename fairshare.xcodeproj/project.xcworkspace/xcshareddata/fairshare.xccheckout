@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>FB48F6CF-8090-4B03-B0E0-CDB443399EFA</string>
+	<key>IDESourceControlProjectName</key>
+	<string>fairshare</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>C72E4DE2-8810-4234-9C4A-AF9D73A3C945</key>
+		<string>https://github.com/satish-ravi/FairShare_iOS.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>fairshare.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>C72E4DE2-8810-4234-9C4A-AF9D73A3C945</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/satish-ravi/FairShare_iOS.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>C72E4DE2-8810-4234-9C4A-AF9D73A3C945</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>C72E4DE2-8810-4234-9C4A-AF9D73A3C945</string>
+			<key>IDESourceControlWCCName</key>
+			<string>FairShare_iOS</string>
+		</dict>
+	</array>
+</dict>
+</plist>
