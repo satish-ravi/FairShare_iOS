@@ -37,7 +37,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self.navigationItem setHidesBackButton:YES];
-    tableData = [NSArray arrayWithObjects:@"Trip1", @"Trip2", nil];
+  // NSArray* tableData = [NSArray arrayWithObjects:@"Trip1", @"Trip2", nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -57,17 +57,23 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [tableData count];
+    //return [tableData count];
+    NSArray *tableD = [NSArray arrayWithObjects:@"Trip1", @"Trip2",@"Trip3", @"Trip4", nil];
+    // return [tableData count];
+    NSInteger* count = [tableD count];
+    return count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"tripsId" forIndexPath:indexPath];
-    
+   // UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"tripsId" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"tripsId"];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"tripsId"];
     }
     
+    //cell.textLabel.text = [tableData objectAtIndex:indexPath.row];
+    NSArray *tableData = [NSArray arrayWithObjects:@"Trip1", @"Trip2",@"Trip3", @"Trip4", nil];
     cell.textLabel.text = [tableData objectAtIndex:indexPath.row];
     return cell;
 }

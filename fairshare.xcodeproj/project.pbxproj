@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B57D833619884F6F005FEA20 /* TripsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B57D833519884F6F005FEA20 /* TripsTableViewController.m */; };
+		B57D8338198934EC005FEA20 /* login-button-small.png in Resources */ = {isa = PBXBuildFile; fileRef = B57D8337198934EC005FEA20 /* login-button-small.png */; };
 		B5EADEC019883BF80013524C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5EADEBF19883BF80013524C /* Foundation.framework */; };
 		B5EADEC219883BF80013524C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5EADEC119883BF80013524C /* CoreGraphics.framework */; };
 		B5EADEC419883BF80013524C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5EADEC319883BF80013524C /* UIKit.framework */; };
@@ -46,6 +47,7 @@
 /* Begin PBXFileReference section */
 		B57D833419884F6F005FEA20 /* TripsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripsTableViewController.h; sourceTree = "<group>"; };
 		B57D833519884F6F005FEA20 /* TripsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripsTableViewController.m; sourceTree = "<group>"; };
+		B57D8337198934EC005FEA20 /* login-button-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-button-small.png"; sourceTree = "<group>"; };
 		B5EADEBC19883BF80013524C /* fairshare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fairshare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5EADEBF19883BF80013524C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B5EADEC119883BF80013524C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -167,6 +169,7 @@
 		B5EADEC619883BF80013524C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B57D8337198934EC005FEA20 /* login-button-small.png */,
 				B5EADEC719883BF80013524C /* fairshare-Info.plist */,
 				B5EADEC819883BF80013524C /* InfoPlist.strings */,
 				B5EADECB19883BF80013524C /* main.m */,
@@ -270,6 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5EADED819883BF80013524C /* Images.xcassets in Resources */,
+				B57D8338198934EC005FEA20 /* login-button-small.png in Resources */,
 				B5EADECA19883BF80013524C /* InfoPlist.strings in Resources */,
 				B5EADED319883BF80013524C /* Main.storyboard in Resources */,
 			);
