@@ -20,8 +20,6 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
-        PFUser *usr = [PFUser currentUser];
-        NSLog(usr.username);
         NSLog(@"User logged in already");
         [self.navigationController pushViewController:[[TripsTableViewController alloc] initWithStyle:UITableViewStylePlain] animated:NO];
         
