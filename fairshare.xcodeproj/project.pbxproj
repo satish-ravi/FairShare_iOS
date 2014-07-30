@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3153D0FF19897FD3008B3267 /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = 3153D0FE19897FD3008B3267 /* Trip.m */; };
-		3153D102198981BF008B3267 /* ParseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3153D101198981BF008B3267 /* ParseHelper.m */; };
+		31E2C7F919899C0B002AD1E3 /* TripTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E2C7F819899C0B002AD1E3 /* TripTableViewCell.m */; };
 		B57D833619884F6F005FEA20 /* TripsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B57D833519884F6F005FEA20 /* TripsTableViewController.m */; };
 		B57D8338198934EC005FEA20 /* login-button-small.png in Resources */ = {isa = PBXBuildFile; fileRef = B57D8337198934EC005FEA20 /* login-button-small.png */; };
 		B5EADEC019883BF80013524C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5EADEBF19883BF80013524C /* Foundation.framework */; };
@@ -49,8 +49,8 @@
 /* Begin PBXFileReference section */
 		3153D0FD19897FD3008B3267 /* Trip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trip.h; sourceTree = "<group>"; };
 		3153D0FE19897FD3008B3267 /* Trip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Trip.m; sourceTree = "<group>"; };
-		3153D100198981BF008B3267 /* ParseHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParseHelper.h; path = ../ParseHelper.h; sourceTree = "<group>"; };
-		3153D101198981BF008B3267 /* ParseHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ParseHelper.m; path = ../ParseHelper.m; sourceTree = "<group>"; };
+		31E2C7F719899C0B002AD1E3 /* TripTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TripTableViewCell.h; path = ../TripTableViewCell.h; sourceTree = "<group>"; };
+		31E2C7F819899C0B002AD1E3 /* TripTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TripTableViewCell.m; path = ../TripTableViewCell.m; sourceTree = "<group>"; };
 		B57D833419884F6F005FEA20 /* TripsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripsTableViewController.h; sourceTree = "<group>"; };
 		B57D833519884F6F005FEA20 /* TripsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripsTableViewController.m; sourceTree = "<group>"; };
 		B57D8337198934EC005FEA20 /* login-button-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-button-small.png"; sourceTree = "<group>"; };
@@ -117,6 +117,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		31E2C7F619899544002AD1E3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3153D0FD19897FD3008B3267 /* Trip.h */,
+				3153D0FE19897FD3008B3267 /* Trip.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		B5EADEB319883BF80013524C = {
 			isa = PBXGroup;
 			children = (
@@ -159,10 +168,9 @@
 		B5EADEC519883BF80013524C /* fairshare */ = {
 			isa = PBXGroup;
 			children = (
-				3153D100198981BF008B3267 /* ParseHelper.h */,
-				3153D101198981BF008B3267 /* ParseHelper.m */,
-				3153D0FD19897FD3008B3267 /* Trip.h */,
-				3153D0FE19897FD3008B3267 /* Trip.m */,
+				31E2C7F719899C0B002AD1E3 /* TripTableViewCell.h */,
+				31E2C7F819899C0B002AD1E3 /* TripTableViewCell.m */,
+				31E2C7F619899544002AD1E3 /* Model */,
 				B5EADECE19883BF80013524C /* AppDelegate.h */,
 				B5EADECF19883BF80013524C /* AppDelegate.m */,
 				B5EADED119883BF80013524C /* Main.storyboard */,
@@ -305,8 +313,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				3153D0FF19897FD3008B3267 /* Trip.m in Sources */,
-				3153D102198981BF008B3267 /* ParseHelper.m in Sources */,
 				B5EADED619883BF80013524C /* LoginViewController.m in Sources */,
+				31E2C7F919899C0B002AD1E3 /* TripTableViewCell.m in Sources */,
 				B5EADED019883BF80013524C /* AppDelegate.m in Sources */,
 				B57D833619884F6F005FEA20 /* TripsTableViewController.m in Sources */,
 				B5EADECC19883BF80013524C /* main.m in Sources */,

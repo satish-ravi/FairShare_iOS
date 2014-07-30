@@ -8,11 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Trip : NSObject
-
-@property (retain, nonatomic) NSString *tripName;
-@property (retain, nonatomic) NSString *startLocation;
-@property (retain, nonatomic) NSString *endLocation;
-@property (nonatomic) double totalCost;
+@interface Trip : PFObject <PFSubclassing>
++ (NSString *)parseClassName;
+@property (retain) NSString *trip_name;
+@property (retain) NSString *start_location;
+@property (retain) NSString *end_location;
 
 @end

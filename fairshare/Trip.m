@@ -7,7 +7,18 @@
 //
 
 #import "Trip.h"
+#import <Parse/PFObject+Subclass.h>
 
 @implementation Trip
-
+@dynamic trip_name;
+@dynamic start_location;
+@dynamic end_location;
++ (NSString *)parseClassName {
+    return @"Trip";
+}
++ (void)load {
+    @autoreleasepool {
+        [self registerSubclass];
+    }
+}
 @end

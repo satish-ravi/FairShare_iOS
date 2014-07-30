@@ -8,7 +8,8 @@
 
 #import "TripsTableViewController.h"
 #import "LoginViewController.h"
-#import "ParseHelper.h"
+#import "Trip.h"
+#import "TripTableViewCell.h"
 
 @interface TripsTableViewController ()
 
@@ -33,17 +34,18 @@
     [super viewDidLoad];
     
     // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    //self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self.navigationItem setHidesBackButton:YES];
-    tableData = [NSArray arrayWithObjects:@"Trip1", @"Trip2", nil];
+    tableData = [NSArray arrayWithObjects:nil, nil];
     [PFCloud callFunctionInBackground:@"getTripByUser"
                        withParameters:@{@"userId": @"user1"}
-                                block:^(NSString *result, NSError *error) {
+                                block:^(NSArray *result, NSError *error) {
                                     if (!error) {
-                                        NSLog(@"Parse result: %@", result);
+                                        tableData = result;
+                                        [self.tableView reloadData];
                                     } else {
                                         
                                     }
@@ -70,7 +72,7 @@
 {
     //return [tableData count];
     //NSArray *tableD = [NSArray arrayWithObjects:@"Trip1", @"Trip2",@"Trip3", @"Trip4", nil];
-    NSLog(@"%lu", (unsigned long)[tableData count]);
+    //NSLog(@"%lu", (unsigned long)[tableData count]);
     return [tableData count];
     //NSInteger* count = [tableD count];
     //return count;
@@ -78,13 +80,17 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"tripsId" forIndexPath:indexPath];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"tripsId"];
+    //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"tripsId" forIndexPath:indexPath];
+    TripTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"tripsId"];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"tripsId"];
+        cell = [[TripTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"tripsId"];
     }
-    
-    cell.textLabel.text = [tableData objectAtIndex:indexPath.row];
+    Trip *trip = [tableData objectAtIndex:indexPath.row];
+    NSLog(@"Trip:%@", trip);
+    //cell.textLabel.text = trip.trip_name;
+    //cell.lblTripName.text = trip.trip_name;
+    //cell.lblLocation.text = trip.start_location;
+    [[cell lblLocation] setText:trip.trip_name];
     return cell;
 }
 

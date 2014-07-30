@@ -44,34 +44,49 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="515" y="-396"/>
+            <point key="canvasLocation" x="29" y="-11"/>
         </scene>
         <!--Trips Table View Controller - Fair Share-->
         <scene sceneID="qT8-XW-HaR">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NC7-7g-lOR" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="o4C-eP-l18" customClass="TripsTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="singleLineEtched" rowHeight="32" sectionHeaderHeight="22" sectionFooterHeight="22" id="JD9-Cm-MWl">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="singleLineEtched" rowHeight="65" sectionHeaderHeight="22" sectionFooterHeight="22" id="JD9-Cm-MWl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="tripsId" textLabel="t76-JP-t7S" rowHeight="32" style="IBUITableViewCellStyleDefault" id="3Qy-oX-Qz8">
-                                <rect key="frame" x="0.0" y="86" width="320" height="32"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="tripsId" rowHeight="65" id="3Qy-oX-Qz8" customClass="TripTableViewCell">
+                                <rect key="frame" x="0.0" y="86" width="320" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3Qy-oX-Qz8" id="B8D-SF-D69">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="31"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="t76-JP-t7S">
-                                            <rect key="frame" x="15" y="0.0" width="290" height="31"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Trip Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t3Z-Sw-nqc">
+                                            <rect key="frame" x="20" y="5" width="79" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yW3-yX-GBJ">
+                                            <rect key="frame" x="258" y="21" width="36" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="start-stop" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E4O-B1-hyU">
+                                            <rect key="frame" x="20" y="34" width="75" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="lblLocation" destination="E4O-B1-hyU" id="sSs-RW-mn7"/>
+                                    <outlet property="lblTripDate" destination="yW3-yX-GBJ" id="0MS-z7-ar9"/>
+                                    <outlet property="lblTripName" destination="t3Z-Sw-nqc" id="O2c-n0-uNr"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -81,8 +96,9 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Fair Share" id="cR9-QC-rpa"/>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NC7-7g-lOR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="18" y="-51"/>
+            <point key="canvasLocation" x="457" y="-11"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="f7V-8r-HFQ">
