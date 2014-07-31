@@ -11,6 +11,9 @@
 		31145602198ACEAF00CF01D8 /* TripDetailsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31145601198ACEAF00CF01D8 /* TripDetailsTableViewController.m */; };
 		31145605198AD18500CF01D8 /* TripUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 31145604198AD18500CF01D8 /* TripUser.m */; };
 		31145609198AD31200CF01D8 /* TripDetailsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31145608198AD31200CF01D8 /* TripDetailsTableViewCell.m */; };
+		3114560D198AE37700CF01D8 /* CreateTripViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3114560C198AE37700CF01D8 /* CreateTripViewController.m */; };
+		31145610198AEB3A00CF01D8 /* EditLocTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3114560F198AEB3A00CF01D8 /* EditLocTableViewCell.m */; };
+		31145613198AEC5F00CF01D8 /* EditTripTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31145612198AEC5F00CF01D8 /* EditTripTableViewController.m */; };
 		3153D0FF19897FD3008B3267 /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = 3153D0FE19897FD3008B3267 /* Trip.m */; };
 		31E2C7F919899C0B002AD1E3 /* TripTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E2C7F819899C0B002AD1E3 /* TripTableViewCell.m */; };
 		B57D833619884F6F005FEA20 /* TripsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B57D833519884F6F005FEA20 /* TripsTableViewController.m */; };
@@ -59,6 +62,12 @@
 		31145604198AD18500CF01D8 /* TripUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripUser.m; sourceTree = "<group>"; };
 		31145607198AD31200CF01D8 /* TripDetailsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripDetailsTableViewCell.h; sourceTree = "<group>"; };
 		31145608198AD31200CF01D8 /* TripDetailsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripDetailsTableViewCell.m; sourceTree = "<group>"; };
+		3114560B198AE37700CF01D8 /* CreateTripViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTripViewController.h; sourceTree = "<group>"; };
+		3114560C198AE37700CF01D8 /* CreateTripViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTripViewController.m; sourceTree = "<group>"; };
+		3114560E198AEB3A00CF01D8 /* EditLocTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditLocTableViewCell.h; sourceTree = "<group>"; };
+		3114560F198AEB3A00CF01D8 /* EditLocTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditLocTableViewCell.m; sourceTree = "<group>"; };
+		31145611198AEC5F00CF01D8 /* EditTripTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTripTableViewController.h; sourceTree = "<group>"; };
+		31145612198AEC5F00CF01D8 /* EditTripTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTripTableViewController.m; sourceTree = "<group>"; };
 		3153D0FD19897FD3008B3267 /* Trip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trip.h; sourceTree = "<group>"; };
 		3153D0FE19897FD3008B3267 /* Trip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Trip.m; sourceTree = "<group>"; };
 		31E2C7F719899C0B002AD1E3 /* TripTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TripTableViewCell.h; path = ../TripTableViewCell.h; sourceTree = "<group>"; };
@@ -136,8 +145,27 @@
 				31E2C7F819899C0B002AD1E3 /* TripTableViewCell.m */,
 				31145607198AD31200CF01D8 /* TripDetailsTableViewCell.h */,
 				31145608198AD31200CF01D8 /* TripDetailsTableViewCell.m */,
+				3114560E198AEB3A00CF01D8 /* EditLocTableViewCell.h */,
+				3114560F198AEB3A00CF01D8 /* EditLocTableViewCell.m */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		3114560A198ADABC00CF01D8 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B5EADED419883BF80013524C /* LoginViewController.h */,
+				B5EADED519883BF80013524C /* LoginViewController.m */,
+				31145600198ACEAF00CF01D8 /* TripDetailsTableViewController.h */,
+				31145601198ACEAF00CF01D8 /* TripDetailsTableViewController.m */,
+				B57D833419884F6F005FEA20 /* TripsTableViewController.h */,
+				B57D833519884F6F005FEA20 /* TripsTableViewController.m */,
+				3114560B198AE37700CF01D8 /* CreateTripViewController.h */,
+				3114560C198AE37700CF01D8 /* CreateTripViewController.m */,
+				31145611198AEC5F00CF01D8 /* EditTripTableViewController.h */,
+				31145612198AEC5F00CF01D8 /* EditTripTableViewController.m */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 		31E2C7F619899544002AD1E3 /* Model */ = {
@@ -193,19 +221,14 @@
 		B5EADEC519883BF80013524C /* fairshare */ = {
 			isa = PBXGroup;
 			children = (
+				3114560A198ADABC00CF01D8 /* Controller */,
 				31145606198AD2DE00CF01D8 /* View */,
-				31145600198ACEAF00CF01D8 /* TripDetailsTableViewController.h */,
-				31145601198ACEAF00CF01D8 /* TripDetailsTableViewController.m */,
+				31E2C7F619899544002AD1E3 /* Model */,
 				311455FD198AC97200CF01D8 /* Utils.h */,
 				311455FE198AC97200CF01D8 /* Utils.m */,
-				31E2C7F619899544002AD1E3 /* Model */,
 				B5EADECE19883BF80013524C /* AppDelegate.h */,
 				B5EADECF19883BF80013524C /* AppDelegate.m */,
 				B5EADED119883BF80013524C /* Main.storyboard */,
-				B5EADED419883BF80013524C /* LoginViewController.h */,
-				B5EADED519883BF80013524C /* LoginViewController.m */,
-				B57D833419884F6F005FEA20 /* TripsTableViewController.h */,
-				B57D833519884F6F005FEA20 /* TripsTableViewController.m */,
 				B5EADED719883BF80013524C /* Images.xcassets */,
 				B5EADEC619883BF80013524C /* Supporting Files */,
 			);
@@ -340,7 +363,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31145613198AEC5F00CF01D8 /* EditTripTableViewController.m in Sources */,
+				31145610198AEB3A00CF01D8 /* EditLocTableViewCell.m in Sources */,
 				3153D0FF19897FD3008B3267 /* Trip.m in Sources */,
+				3114560D198AE37700CF01D8 /* CreateTripViewController.m in Sources */,
 				B5EADED619883BF80013524C /* LoginViewController.m in Sources */,
 				31E2C7F919899C0B002AD1E3 /* TripTableViewCell.m in Sources */,
 				B5EADED019883BF80013524C /* AppDelegate.m in Sources */,

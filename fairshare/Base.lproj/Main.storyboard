@@ -86,7 +86,7 @@
                                     <outlet property="lblLocation" destination="E4O-B1-hyU" id="sSs-RW-mn7"/>
                                     <outlet property="lblTripDate" destination="yW3-yX-GBJ" id="0MS-z7-ar9"/>
                                     <outlet property="lblTripName" destination="t3Z-Sw-nqc" id="O2c-n0-uNr"/>
-                                    <segue destination="0iG-71-APy" kind="push" id="I7h-1E-6sd"/>
+                                    <segue destination="0iG-71-APy" kind="push" identifier="tripDetailsSegue" id="I7h-1E-6sd"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -98,7 +98,7 @@
                     <navigationItem key="navigationItem" title="Fair Share" id="cR9-QC-rpa">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Cnx-on-Qau">
                             <connections>
-                                <segue destination="bVv-aY-NbD" kind="push" id="n8u-Oh-XaB"/>
+                                <segue destination="bVv-aY-NbD" kind="push" identifier="addTripSegue" id="n8u-Oh-XaB"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -107,11 +107,109 @@
             </objects>
             <point key="canvasLocation" x="457" y="-11"/>
         </scene>
+        <!--Edit Trip Table View Controller-->
+        <scene sceneID="eNq-5o-vct">
+            <objects>
+                <tableViewController id="VNP-LH-TGw" customClass="EditTripTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="66" sectionHeaderHeight="22" sectionFooterHeight="22" id="O8l-AZ-6Ee">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="tripDetailsCell" rowHeight="66" id="1X9-cT-Jw7" customClass="TripDetailsTableViewCell">
+                                <rect key="frame" x="0.0" y="86" width="320" height="66"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1X9-cT-Jw7" id="EMc-4N-ZEe">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Rb-7G-kV6">
+                                            <rect key="frame" x="6" y="6" width="56" height="53"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="commuter" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L8o-Iz-vNq">
+                                            <rect key="frame" x="70" y="6" width="126" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="start" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0cy-hC-80E">
+                                            <rect key="frame" x="70" y="22" width="126" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="end" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mnx-hL-6Am">
+                                            <rect key="frame" x="70" y="38" width="126" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6kA-Je-BMk">
+                                            <rect key="frame" x="233" y="14" width="67" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hjr-3p-WPH">
+                                            <rect key="frame" x="233" y="30" width="67" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="lblCommuter" destination="L8o-Iz-vNq" id="Heg-Aj-b6f"/>
+                                    <outlet property="lblCost" destination="6kA-Je-BMk" id="2QN-Gi-o6f"/>
+                                    <outlet property="lblDistance" destination="Hjr-3p-WPH" id="8nh-uG-uG4"/>
+                                    <outlet property="lblEndLocation" destination="mnx-hL-6Am" id="4OI-tH-F4V"/>
+                                    <outlet property="lblStartLocation" destination="0cy-hC-80E" id="ijM-L5-0hp"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="editLocCell" rowHeight="88" id="pr7-ul-o6q" customClass="EditLocTableViewCell">
+                                <rect key="frame" x="0.0" y="152" width="320" height="88"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pr7-ul-o6q" id="07L-sf-n5V">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="87"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="start location" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7C1-yg-qoc">
+                                            <rect key="frame" x="67" y="7" width="187" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="drop location" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uwc-GU-aLD">
+                                            <rect key="frame" x="67" y="45" width="187" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="txtEndLocation" destination="uwc-GU-aLD" id="RdK-yx-oMd"/>
+                                    <outlet property="txtStartLocation" destination="7C1-yg-qoc" id="9QT-Da-TYJ"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="VNP-LH-TGw" id="4sf-Bv-4Kk"/>
+                            <outlet property="delegate" destination="VNP-LH-TGw" id="jNC-Hq-lbt"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="YAT-Bv-PJs"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1dM-az-HiR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1387" y="475"/>
+        </scene>
         <!--Trip Details Table View Controller - Trip Details-->
         <scene sceneID="4Hn-JB-dpa">
             <objects>
                 <tableViewController id="0iG-71-APy" customClass="TripDetailsTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="66" sectionHeaderHeight="22" sectionFooterHeight="22" id="sRZ-7E-mxL">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="66" sectionHeaderHeight="22" sectionFooterHeight="22" id="sRZ-7E-mxL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -173,16 +271,22 @@
                             <outlet property="delegate" destination="0iG-71-APy" id="ZeJ-Ci-bdg"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Trip Details" id="tc0-Dk-eTV"/>
+                    <navigationItem key="navigationItem" title="Trip Details" id="tc0-Dk-eTV">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="HDU-RV-BQq">
+                            <connections>
+                                <segue destination="VNP-LH-TGw" kind="push" id="osa-1O-xBp"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GjG-Wf-jIz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="973" y="475"/>
         </scene>
-        <!--View Controller - Create Trip-->
+        <!--Create Trip View Controller - Create Trip-->
         <scene sceneID="Gon-cd-sro">
             <objects>
-                <viewController id="bVv-aY-NbD" sceneMemberID="viewController">
+                <viewController id="bVv-aY-NbD" customClass="CreateTripViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Fzq-G0-x1r"/>
                         <viewControllerLayoutGuide type="bottom" id="9y6-1p-OGR"/>
@@ -205,11 +309,17 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="chooseFriendsClicked:" destination="bVv-aY-NbD" eventType="touchUpInside" id="MK1-Ax-g3r"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Create Trip" id="1DX-Ub-hYm"/>
+                    <connections>
+                        <outlet property="txtTripName" destination="nH5-YU-aAj" id="QXA-tL-3MF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kec-fA-H0H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

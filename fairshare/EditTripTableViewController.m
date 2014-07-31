@@ -1,15 +1,21 @@
 //
-//  TripDetailsTableViewController.m
+//  EditTripTableViewController.m
 //  fairshare
 //
 //  Created by Satish Ravi on 7/31/14.
 //  Copyright (c) 2014 Satish Ravi. All rights reserved.
 //
 
-#import "TripDetailsTableViewController.h"
-#import "TripDetailsTableViewCell.h"
+#import "EditTripTableViewController.h"
+#import "EditLocTableViewCell.h"
 
-@implementation TripDetailsTableViewController
+@interface EditTripTableViewController ()
+
+@end
+
+@implementation EditTripTableViewController {
+    long selectedRow;
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -27,22 +33,9 @@
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
-    NSLog(@"%@", _currentTrip);
-    
-    PFQuery *query = [PFQuery queryWithClassName:[TripUser parseClassName]];
-    [query whereKey:@"tripId" equalTo:_currentTrip];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            _tableData = objects;
-            [self.tableView reloadData];
-        } else {
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
-    
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    selectedRow = -1;
 }
 
 - (void)didReceiveMemoryWarning
@@ -51,37 +44,50 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    // Return the number of sections.
-    return 1;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
-    return [_tableData count];
+    if (selectedRow != -1) {
+        return [self.tableData count] + 1;
+    } else {
+        return [super tableView:tableView numberOfRowsInSection:section];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TripDetailsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"tripDetailsCell"];
-    
-    // Configure the cell...
-    TripUser *tripUser = [_tableData objectAtIndex:indexPath.row];
-    cell.lblCommuter.text = tripUser.commuterId;
-    cell.lblStartLocation.text = tripUser.startLocation;
-    cell.lblEndLocation.text = tripUser.endLocation;
-    if (tripUser.cost != 0) {
-        cell.lblCost.text = [NSString stringWithFormat:@"$ %.2f", tripUser.cost];
+    if (selectedRow != -1) {
+        if (indexPath.row <= selectedRow) {
+            return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+        }
+        else if (indexPath.row == selectedRow) {
+            UITableViewCell* cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
+            cell.backgroundColor = [UIColor greenColor];
+            return cell;
+        } else if (indexPath.row == selectedRow + 1) {
+            EditLocTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"editLocCell"];
+            return cell;
+        } else {
+            return [super tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row - 1 inSection:indexPath.section]];
+        }
+        
+    } else {
+        return [super tableView:tableView cellForRowAtIndexPath:indexPath];
     }
-    if (tripUser.distance != 0) {
-        cell.lblDistance.text = [NSString stringWithFormat:@"%.2f miles", tripUser.distance];
-    }
     
-    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    long currentRow = indexPath.row;
+    if (selectedRow != -1) {
+        if (currentRow == selectedRow + 1 || currentRow == selectedRow) {
+            currentRow = -1;
+        } else if (currentRow > selectedRow + 1) {
+            currentRow--;
+        }
+    }
+    selectedRow = currentRow;
+   [self.tableView reloadData];
 }
 
 /*
@@ -122,14 +128,15 @@
 }
 */
 
-
+/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    TripDetailsTableViewController *tripDetailsVC = [segue destinationViewController];
-    tripDetailsVC.currentTrip = _currentTrip;
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
 }
+*/
 
 @end
