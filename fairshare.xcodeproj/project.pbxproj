@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		311455FF198AC97200CF01D8 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 311455FE198AC97200CF01D8 /* Utils.m */; };
+		31145602198ACEAF00CF01D8 /* TripDetailsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31145601198ACEAF00CF01D8 /* TripDetailsTableViewController.m */; };
+		31145605198AD18500CF01D8 /* TripUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 31145604198AD18500CF01D8 /* TripUser.m */; };
+		31145609198AD31200CF01D8 /* TripDetailsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31145608198AD31200CF01D8 /* TripDetailsTableViewCell.m */; };
 		3153D0FF19897FD3008B3267 /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = 3153D0FE19897FD3008B3267 /* Trip.m */; };
 		31E2C7F919899C0B002AD1E3 /* TripTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E2C7F819899C0B002AD1E3 /* TripTableViewCell.m */; };
 		B57D833619884F6F005FEA20 /* TripsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B57D833519884F6F005FEA20 /* TripsTableViewController.m */; };
@@ -47,6 +51,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		311455FD198AC97200CF01D8 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		311455FE198AC97200CF01D8 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		31145600198ACEAF00CF01D8 /* TripDetailsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripDetailsTableViewController.h; sourceTree = "<group>"; };
+		31145601198ACEAF00CF01D8 /* TripDetailsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripDetailsTableViewController.m; sourceTree = "<group>"; };
+		31145603198AD18500CF01D8 /* TripUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripUser.h; sourceTree = "<group>"; };
+		31145604198AD18500CF01D8 /* TripUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripUser.m; sourceTree = "<group>"; };
+		31145607198AD31200CF01D8 /* TripDetailsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripDetailsTableViewCell.h; sourceTree = "<group>"; };
+		31145608198AD31200CF01D8 /* TripDetailsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripDetailsTableViewCell.m; sourceTree = "<group>"; };
 		3153D0FD19897FD3008B3267 /* Trip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trip.h; sourceTree = "<group>"; };
 		3153D0FE19897FD3008B3267 /* Trip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Trip.m; sourceTree = "<group>"; };
 		31E2C7F719899C0B002AD1E3 /* TripTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TripTableViewCell.h; path = ../TripTableViewCell.h; sourceTree = "<group>"; };
@@ -117,9 +129,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		31145606198AD2DE00CF01D8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				31E2C7F719899C0B002AD1E3 /* TripTableViewCell.h */,
+				31E2C7F819899C0B002AD1E3 /* TripTableViewCell.m */,
+				31145607198AD31200CF01D8 /* TripDetailsTableViewCell.h */,
+				31145608198AD31200CF01D8 /* TripDetailsTableViewCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		31E2C7F619899544002AD1E3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				31145603198AD18500CF01D8 /* TripUser.h */,
+				31145604198AD18500CF01D8 /* TripUser.m */,
 				3153D0FD19897FD3008B3267 /* Trip.h */,
 				3153D0FE19897FD3008B3267 /* Trip.m */,
 			);
@@ -168,8 +193,11 @@
 		B5EADEC519883BF80013524C /* fairshare */ = {
 			isa = PBXGroup;
 			children = (
-				31E2C7F719899C0B002AD1E3 /* TripTableViewCell.h */,
-				31E2C7F819899C0B002AD1E3 /* TripTableViewCell.m */,
+				31145606198AD2DE00CF01D8 /* View */,
+				31145600198ACEAF00CF01D8 /* TripDetailsTableViewController.h */,
+				31145601198ACEAF00CF01D8 /* TripDetailsTableViewController.m */,
+				311455FD198AC97200CF01D8 /* Utils.h */,
+				311455FE198AC97200CF01D8 /* Utils.m */,
 				31E2C7F619899544002AD1E3 /* Model */,
 				B5EADECE19883BF80013524C /* AppDelegate.h */,
 				B5EADECF19883BF80013524C /* AppDelegate.m */,
@@ -317,6 +345,10 @@
 				31E2C7F919899C0B002AD1E3 /* TripTableViewCell.m in Sources */,
 				B5EADED019883BF80013524C /* AppDelegate.m in Sources */,
 				B57D833619884F6F005FEA20 /* TripsTableViewController.m in Sources */,
+				31145609198AD31200CF01D8 /* TripDetailsTableViewCell.m in Sources */,
+				31145605198AD18500CF01D8 /* TripUser.m in Sources */,
+				311455FF198AC97200CF01D8 /* Utils.m in Sources */,
+				31145602198ACEAF00CF01D8 /* TripDetailsTableViewController.m in Sources */,
 				B5EADECC19883BF80013524C /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

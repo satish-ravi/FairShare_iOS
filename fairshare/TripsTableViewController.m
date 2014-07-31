@@ -7,9 +7,8 @@
 //
 
 #import "TripsTableViewController.h"
-#import "LoginViewController.h"
-#import "Trip.h"
 #import "TripTableViewCell.h"
+#import "TripDetailsTableViewController.h"
 
 @interface TripsTableViewController ()
 
@@ -63,7 +62,6 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
 }
@@ -83,6 +81,7 @@
     NSLog(@"Trip:%@", trip);
     cell.lblTripName.text = trip.trip_name;
     cell.lblLocation.text = [NSString stringWithFormat:@"%@ - %@", trip.start_location, trip.end_location];
+    cell.lblTripDate.text = [Utils getDateAsStringWithDate:trip.tripDate Format:@"yyyy-MM-dd"];
     return cell;
 }
 
@@ -125,15 +124,15 @@
  }
  */
 
-/*
- #pragma mark - Navigation
- 
  // In a storyboard-based application, you will often want to do a little preparation before navigation
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
  {
+     TripDetailsTableViewController *tripDetailsVC = [segue destinationViewController];
+     NSLog(@"Selected Row: %ld", (long)[self.tableView indexPathForSelectedRow].row);
+     tripDetailsVC.currentTrip = [tableData objectAtIndex:[self.tableView indexPathForSelectedRow].row];
+     
  // Get the new view controller using [segue destinationViewController].
  // Pass the selected object to the new view controller.
  }
- */
 
 @end
