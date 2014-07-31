@@ -70,27 +70,19 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    //return [tableData count];
-    //NSArray *tableD = [NSArray arrayWithObjects:@"Trip1", @"Trip2",@"Trip3", @"Trip4", nil];
-    //NSLog(@"%lu", (unsigned long)[tableData count]);
     return [tableData count];
-    //NSInteger* count = [tableD count];
-    //return count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"tripsId" forIndexPath:indexPath];
     TripTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"tripsId"];
     if (cell == nil) {
         cell = [[TripTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"tripsId"];
     }
     Trip *trip = [tableData objectAtIndex:indexPath.row];
     NSLog(@"Trip:%@", trip);
-    //cell.textLabel.text = trip.trip_name;
-    //cell.lblTripName.text = trip.trip_name;
-    //cell.lblLocation.text = trip.start_location;
-    [[cell lblLocation] setText:trip.trip_name];
+    cell.lblTripName.text = trip.trip_name;
+    cell.lblLocation.text = [NSString stringWithFormat:@"%@ - %@", trip.start_location, trip.end_location];
     return cell;
 }
 

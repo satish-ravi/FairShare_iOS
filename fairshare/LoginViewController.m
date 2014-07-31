@@ -21,7 +21,7 @@
 	// Do any additional setup after loading the view, typically from a nib.
     if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
         NSLog(@"User logged in already");
-        [self.navigationController pushViewController:[[TripsTableViewController alloc] initWithStyle:UITableViewStylePlain] animated:NO];
+        [self performSegueWithIdentifier:@"tripsSegue" sender:self.view];
         
     }
     
@@ -45,10 +45,10 @@
             }
         } else if (user.isNew) {
             NSLog(@"User with facebook signed up and logged in!");
-            [self.navigationController pushViewController:[[TripsTableViewController alloc] initWithStyle:UITableViewStyleGrouped] animated:YES];
+            [self performSegueWithIdentifier:@"tripsSegue" sender:self.view];
         } else {
             NSLog(@"User with facebook logged in!");
-            [self.navigationController pushViewController:[[TripsTableViewController alloc] initWithStyle:UITableViewStyleGrouped] animated:YES];
+            [self performSegueWithIdentifier:@"tripsSegue" sender:self.view];
         }
     }];
 

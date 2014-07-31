@@ -13,5 +13,7 @@
 @property (retain) NSString *trip_name;
 @property (retain) NSString *start_location;
 @property (retain) NSString *end_location;
+@property (retain) NSDate *tripDate;
+@property double totalCost;
 
 @end

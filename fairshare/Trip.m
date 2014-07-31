@@ -13,6 +13,8 @@
 @dynamic trip_name;
 @dynamic start_location;
 @dynamic end_location;
+@dynamic tripDate;
+@dynamic totalCost;
 + (NSString *)parseClassName {
     return @"Trip";
 }
