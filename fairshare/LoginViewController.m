@@ -43,13 +43,34 @@
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log In Error" message:[error description] delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Dismiss", nil];
                 [alert show];
             }
-        } else if (user.isNew) {
-            NSLog(@"User with facebook signed up and logged in!");
-            [self performSegueWithIdentifier:@"tripsSegue" sender:self.view];
-        } else {
-            NSLog(@"User with facebook logged in!");
-            [self performSegueWithIdentifier:@"tripsSegue" sender:self.view];
         }
+        
+      else
+      {
+          [PFFacebookUtils logInWithPermissions:permissionsArray
+                                          block:^(PFUser *user, NSError *error) {
+                                              if (user) {
+                                                  [FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+                                                      if (!error) {
+                                                          // Store the current user's Facebook ID on the user
+                                                          [[PFUser currentUser] setObject:[result objectForKey:@"id"]
+                                                                                   forKey:@"fbId"];
+                                                          [[PFUser currentUser] saveInBackground];
+                                                      }
+                                                  }];
+                                              }
+                                          }];
+      }
+        
+        
+        
+        //else if (user.isNew) {
+          //  NSLog(@"User with facebook signed up and logged in!");
+            //[self performSegueWithIdentifier:@"tripsSegue" sender:self.view];
+//        } else {
+  //          NSLog(@"User with facebook logged in!");
+    //        [self performSegueWithIdentifier:@"tripsSegue" sender:self.view];
+      //  }
     }];
 
 }
