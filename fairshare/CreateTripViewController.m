@@ -46,7 +46,12 @@
 }
 */
 - (IBAction)chooseFriendsClicked:(UIButton *)sender {
-    if (FBSession.activeSession.isOpen) {
+    NSString *tripName = [_txtTripName.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if ([tripName length] == 0) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Empty Trip Name" message:@"Please enter trip name before choosing friends" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Dismiss", nil];
+        [alert show];
+    }
+    else if (FBSession.activeSession.isOpen) {
         if (self.friendPickerController == nil) {
             // Create friend picker, and get data loaded into it.
             self.friendPickerController = [[FBFriendPickerViewController alloc] init];
@@ -62,7 +67,7 @@
 
 - (void)facebookViewControllerDoneWasPressed:(id)sender {
     NSMutableString *text = [[NSMutableString alloc] init];
-    
+    Trip *trip = [[Trip alloc] init];
     // we pick up the users from the selection, and create a string that we use to update the text view
     // at the bottom of the display; note that self.selection is a property inherited from our base class
     for (id<FBGraphUser> user in self.friendPickerController.selection) {

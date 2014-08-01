@@ -31,7 +31,7 @@
     
     // Login PFUser using facebook
     [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
-       // [_activityIndicator stopAnimating]; // Hide loading indicator
+        // [_activityIndicator stopAnimating]; // Hide loading indicator
         
         if (!user) {
             if (!error) {
@@ -45,34 +45,35 @@
             }
         }
         
-      else
-      {
-          [PFFacebookUtils logInWithPermissions:permissionsArray
-                                          block:^(PFUser *user, NSError *error) {
-                                              if (user) {
-                                                  [FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
-                                                      if (!error) {
-                                                          // Store the current user's Facebook ID on the user
-                                                          [[PFUser currentUser] setObject:[result objectForKey:@"id"]
-                                                                                   forKey:@"fbId"];
-                                                          [[PFUser currentUser] saveInBackground];
-                                                      }
-                                                  }];
-                                              }
-                                          }];
-      }
+        else
+        {
+            NSLog(@"%@", [user objectForKey:@"fbId"]);
+            if ([user objectForKey:@"fbId"] == NULL) {
+                NSLog(@"Retrieving facebook id");
+                [FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+                    if (!error) {
+                        // Store the current user's Facebook ID on the user
+                        [user setObject:[result objectForKey:@"id"]
+                                 forKey:@"fbId"];
+                        [user saveInBackground];
+                    }
+                }];
+            }
+            NSLog(@"User logged in");
+            [self performSegueWithIdentifier:@"tripsSegue" sender:self.view];
+        }
         
         
         
         //else if (user.isNew) {
-          //  NSLog(@"User with facebook signed up and logged in!");
-            //[self performSegueWithIdentifier:@"tripsSegue" sender:self.view];
-//        } else {
-  //          NSLog(@"User with facebook logged in!");
-    //        [self performSegueWithIdentifier:@"tripsSegue" sender:self.view];
-      //  }
+        //  NSLog(@"User with facebook signed up and logged in!");
+        //[self performSegueWithIdentifier:@"tripsSegue" sender:self.view];
+        //        } else {
+        //          NSLog(@"User with facebook logged in!");
+        //        [self performSegueWithIdentifier:@"tripsSegue" sender:self.view];
+        //  }
     }];
-
+    
 }
 
 - (void)didReceiveMemoryWarning
