@@ -160,6 +160,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="imgPicture" destination="0Rb-7G-kV6" id="EMi-Xr-HEL"/>
                                     <outlet property="lblCommuter" destination="L8o-Iz-vNq" id="Heg-Aj-b6f"/>
                                     <outlet property="lblCost" destination="6kA-Je-BMk" id="2QN-Gi-o6f"/>
                                     <outlet property="lblDistance" destination="Hjr-3p-WPH" id="8nh-uG-uG4"/>
@@ -258,6 +259,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="imgPicture" destination="qA7-mC-5DU" id="8GJ-7H-s8M"/>
                                     <outlet property="lblCommuter" destination="4Xl-h3-5JS" id="6Ag-7Q-udp"/>
                                     <outlet property="lblCost" destination="llg-vB-ubg" id="vnO-aC-2Ia"/>
                                     <outlet property="lblDistance" destination="olG-3Z-55L" id="RDX-WL-wDp"/>

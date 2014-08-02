@@ -12,5 +12,7 @@
 
 @property (nonatomic) Trip* currentTrip;
 @property (nonatomic) NSArray *currentTripUsers;
+@property (nonatomic) BOOL fromCreate;
+@property (nonatomic) BOOL isActive;
 
 @end

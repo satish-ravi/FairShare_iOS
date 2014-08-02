@@ -53,15 +53,10 @@
                 [FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
                     if (!error) {
                         NSString *userId = [result objectID];
-                        NSURL *userImageURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture", userId]];
-                        NSData *userImage = [NSData dataWithContentsOfURL:userImageURL];
-                        
                         NSLog(@"Results: %@", result);
-                        NSLog(@"URL: %@", userImageURL);
-                        PFFile *file = [PFFile fileWithName:[NSString stringWithFormat:@"%@.jpg", userId] data:userImage];
+                        PFFile *file = [Utils getPictureFileFromUserId:userId];
                         [file saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                             if (!error) {
-                                NSLog(@"File: %@", file);
                                 // Store the current user's Facebook ID on the user
                                 [user setObject:userId forKey:@"fbId"];
                                 [user setObject:[result objectForKey:@"name"] forKey:@"displayName"];

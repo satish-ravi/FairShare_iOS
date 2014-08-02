@@ -23,7 +23,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -48,7 +47,12 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self loadData];
+    if (_fromCreate) {
+        _fromCreate = NO;
+    } else {
+        NSLog(@"Fetching");
+        [self loadData];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -80,6 +84,7 @@
     cell.lblCommuter.text = tripUser.displayName;
     cell.lblStartLocation.text = tripUser.startLocation;
     cell.lblEndLocation.text = tripUser.endLocation;
+    cell.imgPicture.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[tripUser.picture url]]]];
     if (tripUser.cost != 0) {
         cell.lblCost.text = [NSString stringWithFormat:@"$ %.2f", tripUser.cost];
     }

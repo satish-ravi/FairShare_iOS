@@ -17,4 +17,13 @@
     NSLog(@"Date: %@", formattedDate);
     return formattedDate;
 }
++(PFFile*) getFileObjFromUrlString:(NSString*) urlString fileName:(NSString*) fileName {
+    NSURL *userImageURL = [NSURL URLWithString:urlString];
+    NSData *userImage = [NSData dataWithContentsOfURL:userImageURL];
+    return [PFFile fileWithName:fileName data:userImage];
+}
++(PFFile*) getPictureFileFromUserId:(NSString*) userId {
+    NSString *urlString = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture", userId];
+    return [Utils getFileObjFromUrlString:urlString fileName:[NSString stringWithFormat:@"%@.jpg", userId]];
+}
 @end

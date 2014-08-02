@@ -14,6 +14,7 @@
 
 @implementation CreateTripViewController {
     Trip *trip;
+    NSMutableArray *tripUserArr;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -46,6 +47,8 @@
     if ([[segue identifier] isEqualToString:@"createSegue"]) {
         TripDetailsTableViewController *tripDetailsVC = [segue destinationViewController];
         tripDetailsVC.currentTrip = trip;
+        tripDetailsVC.fromCreate = YES;
+        tripDetailsVC.currentTripUsers = [NSArray arrayWithArray:tripUserArr];
     }
 }
 
@@ -74,17 +77,17 @@
     trip.tripName = [_txtTripName.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     trip.tripDate = [NSDate date];
     trip.createdBy = [PFUser currentUser];
-    NSMutableArray *tripUserArr = [[NSMutableArray alloc] init];
+    tripUserArr = [[NSMutableArray alloc] init];
     int count = 0;
     // we pick up the users from the selection, and create a string that we use to update the text view
     // at the bottom of the display; note that self.selection is a property inherited from our base class
     for (id<FBGraphUser> user in self.friendPickerController.selection) {
         TripUser *tripUser = [[TripUser alloc] init];
         tripUser.tripId = trip;
-        tripUser.commuterId = user.id;
+        tripUser.commuterId = [user objectID];
         tripUser.displayName = user.name;
+        tripUser.picture = [Utils getPictureFileFromUserId:[user objectID]];
         [tripUserArr addObject:tripUser];
-        NSLog(@"%@", user);
         count++;
     }
     if (count) {
@@ -92,14 +95,17 @@
         currentUsr.tripId = trip;
         currentUsr.commuterId = [[PFUser currentUser] objectForKey:@"fbId"];
         currentUsr.displayName = [[PFUser currentUser] objectForKey:@"displayName"];
+        currentUsr.picture = [[PFUser currentUser] objectForKey:@"picture"];
         [tripUserArr addObject:currentUsr];
         NSLog(@"%d friends selected", count);
         [trip saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (!error && succeeded) {
                 for (TripUser *tripUser in tripUserArr) {
+                    [tripUser.picture saveInBackground];
                     [tripUser saveInBackground];
                 }
                 [self dismissViewControllerAnimated:YES completion:NULL];
+                
                 [self performSegueWithIdentifier:@"createSegue" sender:self.view];
             }
         }];
