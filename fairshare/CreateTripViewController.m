@@ -105,8 +105,8 @@
                     [tripUser saveInBackground];
                 }
                 [self dismissViewControllerAnimated:YES completion:NULL];
-                
-                [self performSegueWithIdentifier:@"createSegue" sender:self.view];
+                [self.delegate setCreatedTrip:trip];
+                [self.navigationController popViewControllerAnimated:YES];
             }
         }];
     } else {

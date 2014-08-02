@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CreateTripViewController.h"
 
-@interface TripsTableViewController : UITableViewController
+@interface TripsTableViewController : UITableViewController <CreateTripViewControllerDelegate>
+
+@property (nonatomic) BOOL fromCreate;
+@property (nonatomic) Trip *createdTrip;
 
 @end

@@ -58,8 +58,12 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    NSLog(@"Reloading");
-    [self loadData];
+    if (_fromCreate) {
+        [self performSegueWithIdentifier:@"tripDetailsSegue" sender:self.view];
+    } else {
+        NSLog(@"Reloading");
+        [self loadData];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -143,9 +147,24 @@
 {
     if ([[segue identifier] isEqualToString:@"tripDetailsSegue"]) {
         TripDetailsTableViewController *tripDetailsVC = [segue destinationViewController];
-        NSLog(@"Selected Row: %ld", (long)[self.tableView indexPathForSelectedRow].row);
-        tripDetailsVC.currentTrip = [tableData objectAtIndex:[self.tableView indexPathForSelectedRow].row];
+        if (_fromCreate) {
+            NSLog(@"Trip created. Going to trip details");
+            tripDetailsVC.currentTrip = _createdTrip;
+            _fromCreate = NO;
+        } else {
+            NSLog(@"Selected Row: %ld", (long)[self.tableView indexPathForSelectedRow].row);
+            tripDetailsVC.currentTrip = [tableData objectAtIndex:[self.tableView indexPathForSelectedRow].row];
+        }
+    } else if ([[segue identifier] isEqualToString:@"addTripSegue"]) {
+        CreateTripViewController *createVC = [segue destinationViewController];
+        createVC.delegate = self;
     }
+}
+
+- (void)setCreatedTrip:(Trip *)trip {
+    NSLog(@"Setting trip delegate");
+    _createdTrip = trip;
+    _fromCreate = YES;
 }
 
 @end

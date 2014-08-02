@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol CreateTripViewControllerDelegate <NSObject>
+- (void)setCreatedTrip:(Trip *)trip;
+@end
+
 @interface CreateTripViewController : UIViewController <FBViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *txtTripName;
 @property (retain, nonatomic) FBFriendPickerViewController *friendPickerController;
+@property (nonatomic, weak) id <CreateTripViewControllerDelegate> delegate;
 
 @end
