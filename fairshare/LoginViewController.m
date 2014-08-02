@@ -47,14 +47,16 @@
         
         else
         {
-            NSLog(@"%@", [user objectForKey:@"fbId"]);
+            NSLog(@"FB ID: %@", [user objectForKey:@"fbId"]);
             if ([user objectForKey:@"fbId"] == NULL) {
-                NSLog(@"Retrieving facebook id");
+                NSLog(@"Retrieving facebook id and name");
                 [FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
                     if (!error) {
+                        NSLog(@"Results: %@", result);
                         // Store the current user's Facebook ID on the user
                         [user setObject:[result objectForKey:@"id"]
                                  forKey:@"fbId"];
+                        [user setObject:[result objectForKey:@"name"] forKey:@"displayName"];
                         [user saveInBackground];
                     }
                 }];

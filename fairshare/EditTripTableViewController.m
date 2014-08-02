@@ -47,7 +47,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (selectedRow != -1) {
-        return [self.tableData count] + 1;
+        return [self.currentTripUsers count] + 1;
     } else {
         return [super tableView:tableView numberOfRowsInSection:section];
     }
@@ -64,7 +64,7 @@
             cell.backgroundColor = [UIColor greenColor];
             return cell;
         } else if (indexPath.row == selectedRow + 1) {
-            TripUser *tripUser = [self.tableData objectAtIndex:selectedRow];
+            TripUser *tripUser = [self.currentTripUsers objectAtIndex:selectedRow];
             EditLocTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"editLocCell"];
             cell.txtStartLocation.text = tripUser.startLocation;
             cell.txtEndLocation.text = tripUser.endLocation;

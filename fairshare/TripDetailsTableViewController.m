@@ -28,21 +28,27 @@
     // self.clearsSelectionOnViewWillAppear = NO;
     
     NSLog(@"%@", _currentTrip);
-    
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)loadData {
     PFQuery *query = [PFQuery queryWithClassName:[TripUser parseClassName]];
     [query whereKey:@"tripId" equalTo:_currentTrip];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
-            _tableData = objects;
+            _currentTripUsers = objects;
             [self.tableView reloadData];
         } else {
             // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self loadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -62,7 +68,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [_tableData count];
+    return [_currentTripUsers count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -70,8 +76,8 @@
     TripDetailsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"tripDetailsCell"];
     
     // Configure the cell...
-    TripUser *tripUser = [_tableData objectAtIndex:indexPath.row];
-    cell.lblCommuter.text = tripUser.commuterId;
+    TripUser *tripUser = [_currentTripUsers objectAtIndex:indexPath.row];
+    cell.lblCommuter.text = tripUser.displayName;
     cell.lblStartLocation.text = tripUser.startLocation;
     cell.lblEndLocation.text = tripUser.endLocation;
     if (tripUser.cost != 0) {

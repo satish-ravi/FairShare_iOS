@@ -39,17 +39,27 @@
     //self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self.navigationItem setHidesBackButton:YES];
     tableData = [NSArray arrayWithObjects:nil, nil];
+    
+}
+
+- (void)loadData {
+    tableData = [NSArray arrayWithObjects:nil, nil];
     [PFCloud callFunctionInBackground:@"getTripByUser"
-                       withParameters:@{@"userId": @"user1"}
+                       withParameters:@{@"userId": [[PFUser currentUser] objectForKey:@"fbId"]}
                                 block:^(NSArray *result, NSError *error) {
                                     if (!error) {
                                         tableData = result;
                                         [self.tableView reloadData];
                                     } else {
-                                        
+                                        NSLog(@"Error occured %@", error);
                                     }
                                 }];
-    
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    NSLog(@"Reloading");
+    [self loadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -79,8 +89,12 @@
     }
     Trip *trip = [tableData objectAtIndex:indexPath.row];
     NSLog(@"Trip:%@", trip);
-    cell.lblTripName.text = trip.trip_name;
-    cell.lblLocation.text = [NSString stringWithFormat:@"%@ - %@", trip.start_location, trip.end_location];
+    cell.lblTripName.text = trip.tripName;
+    if (trip.startLocation != NULL && trip.endLocation != NULL) {
+        cell.lblLocation.text = [NSString stringWithFormat:@"%@ - %@", trip.startLocation, trip.endLocation];
+    } else {
+        cell.lblLocation.text = @"";
+    }
     cell.lblTripDate.text = [Utils getDateAsStringWithDate:trip.tripDate Format:@"yyyy-MM-dd"];
     return cell;
 }

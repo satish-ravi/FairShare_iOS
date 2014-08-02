@@ -319,11 +319,12 @@
                     <navigationItem key="navigationItem" title="Create Trip" id="1DX-Ub-hYm"/>
                     <connections>
                         <outlet property="txtTripName" destination="nH5-YU-aAj" id="QXA-tL-3MF"/>
+                        <segue destination="0iG-71-APy" kind="push" identifier="createSegue" id="lT2-lh-JP8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kec-fA-H0H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="973" y="-259"/>
+            <point key="canvasLocation" x="973" y="-244"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="f7V-8r-HFQ">
@@ -349,4 +350,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="lT2-lh-JP8"/>
+    </inferredMetricsTieBreakers>
 </document>

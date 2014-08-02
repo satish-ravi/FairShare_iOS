@@ -16,5 +16,9 @@
 @property (retain) NSString *endLocation;
 @property double cost;
 @property double distance;
+@property (retain) NSString *displayName;
+@property (retain) PFFile *picture;
+@property (retain) PFGeoPoint *startLocGeo;
+@property (retain) PFGeoPoint *endLocGeo;
 
 @end

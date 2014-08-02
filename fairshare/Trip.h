@@ -10,10 +10,11 @@
 
 @interface Trip : PFObject <PFSubclassing>
 + (NSString *)parseClassName;
-@property (retain) NSString *trip_name;
-@property (retain) NSString *start_location;
-@property (retain) NSString *end_location;
+@property (retain) NSString *tripName;
+@property (retain) NSString *startLocation;
+@property (retain) NSString *endLocation;
 @property (retain) NSDate *tripDate;
 @property double totalCost;
+@property (retain) PFUser *createdBy;
 
 @end

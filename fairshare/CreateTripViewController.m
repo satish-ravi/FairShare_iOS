@@ -12,7 +12,9 @@
 
 @end
 
-@implementation CreateTripViewController
+@implementation CreateTripViewController {
+    Trip *trip;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,16 +37,18 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([[segue identifier] isEqualToString:@"createSegue"]) {
+        TripDetailsTableViewController *tripDetailsVC = [segue destinationViewController];
+        tripDetailsVC.currentTrip = trip;
+    }
 }
-*/
+
 - (IBAction)chooseFriendsClicked:(UIButton *)sender {
     NSString *tripName = [_txtTripName.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     if ([tripName length] == 0) {
@@ -66,19 +70,43 @@
 }
 
 - (void)facebookViewControllerDoneWasPressed:(id)sender {
-    NSMutableString *text = [[NSMutableString alloc] init];
-    Trip *trip = [[Trip alloc] init];
+    trip = [[Trip alloc] init];
+    trip.tripName = [_txtTripName.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    trip.tripDate = [NSDate date];
+    trip.createdBy = [PFUser currentUser];
+    NSMutableArray *tripUserArr = [[NSMutableArray alloc] init];
+    int count = 0;
     // we pick up the users from the selection, and create a string that we use to update the text view
     // at the bottom of the display; note that self.selection is a property inherited from our base class
     for (id<FBGraphUser> user in self.friendPickerController.selection) {
-        if ([text length]) {
-            [text appendString:@", "];
-        }
+        TripUser *tripUser = [[TripUser alloc] init];
+        tripUser.tripId = trip;
+        tripUser.commuterId = user.id;
+        tripUser.displayName = user.name;
+        [tripUserArr addObject:tripUser];
         NSLog(@"%@", user);
-        [text appendString:user.name];
+        count++;
     }
-    NSLog(@"%@", text);
-    [self dismissViewControllerAnimated:YES completion:NULL];
+    if (count) {
+        TripUser *currentUsr = [[TripUser alloc] init];
+        currentUsr.tripId = trip;
+        currentUsr.commuterId = [[PFUser currentUser] objectForKey:@"fbId"];
+        currentUsr.displayName = [[PFUser currentUser] objectForKey:@"displayName"];
+        [tripUserArr addObject:currentUsr];
+        NSLog(@"%d friends selected", count);
+        [trip saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (!error && succeeded) {
+                for (TripUser *tripUser in tripUserArr) {
+                    [tripUser saveInBackground];
+                }
+                [self dismissViewControllerAnimated:YES completion:NULL];
+                [self performSegueWithIdentifier:@"createSegue" sender:self.view];
+            }
+        }];
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No friends selected" message:@"Please select at least one friend" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Dismiss", nil];
+        [alert show];
+    }
 }
 
 - (void)facebookViewControllerCancelWasPressed:(id)sender {

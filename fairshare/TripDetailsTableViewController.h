@@ -11,6 +11,6 @@
 @interface TripDetailsTableViewController : UITableViewController
 
 @property (nonatomic) Trip* currentTrip;
-@property (nonatomic) NSArray *tableData;
+@property (nonatomic) NSArray *currentTripUsers;
 
 @end

@@ -16,6 +16,10 @@
 @dynamic cost;
 @dynamic distance;
 @dynamic tripId;
+@dynamic displayName;
+@dynamic startLocGeo;
+@dynamic endLocGeo;
+@dynamic picture;
 + (NSString *)parseClassName {
     return @"TripUser";
 }

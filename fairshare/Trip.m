@@ -10,11 +10,12 @@
 #import <Parse/PFObject+Subclass.h>
 
 @implementation Trip
-@dynamic trip_name;
-@dynamic start_location;
-@dynamic end_location;
+@dynamic tripName;
+@dynamic startLocation;
+@dynamic endLocation;
 @dynamic tripDate;
 @dynamic totalCost;
+@dynamic createdBy;
 + (NSString *)parseClassName {
     return @"Trip";
 }
