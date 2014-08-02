@@ -48,21 +48,37 @@
         else
         {
             NSLog(@"FB ID: %@", [user objectForKey:@"fbId"]);
-            if ([user objectForKey:@"fbId"] == NULL) {
+            if ([user objectForKey:@"fbId"] == NULL || [user objectForKey:@"displayName"] == NULL || [user objectForKey:@"picture"] == NULL) {
                 NSLog(@"Retrieving facebook id and name");
                 [FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
                     if (!error) {
+                        NSString *userId = [result objectID];
+                        NSURL *userImageURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture", userId]];
+                        NSData *userImage = [NSData dataWithContentsOfURL:userImageURL];
+                        
                         NSLog(@"Results: %@", result);
-                        // Store the current user's Facebook ID on the user
-                        [user setObject:[result objectForKey:@"id"]
-                                 forKey:@"fbId"];
-                        [user setObject:[result objectForKey:@"name"] forKey:@"displayName"];
-                        [user saveInBackground];
+                        NSLog(@"URL: %@", userImageURL);
+                        PFFile *file = [PFFile fileWithName:[NSString stringWithFormat:@"%@.jpg", userId] data:userImage];
+                        [file saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                            if (!error) {
+                                NSLog(@"File: %@", file);
+                                // Store the current user's Facebook ID on the user
+                                [user setObject:userId forKey:@"fbId"];
+                                [user setObject:[result objectForKey:@"name"] forKey:@"displayName"];
+                                [user setObject:file forKey:@"picture"];
+                                [user saveInBackground];
+                                NSLog(@"Saved fbid, name, file");
+                                [self performSegueWithIdentifier:@"tripsSegue" sender:self.view];
+                            } else {
+                                NSLog(@"Error when saving file");
+                            }
+                        }];
                     }
                 }];
+            } else {
+                NSLog(@"User logged in");
+                [self performSegueWithIdentifier:@"tripsSegue" sender:self.view];
             }
-            NSLog(@"User logged in");
-            [self performSegueWithIdentifier:@"tripsSegue" sender:self.view];
         }
         
         
