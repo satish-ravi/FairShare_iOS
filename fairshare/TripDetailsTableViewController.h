@@ -11,7 +11,7 @@
 @interface TripDetailsTableViewController : UITableViewController
 
 @property (nonatomic) Trip* currentTrip;
-@property (nonatomic) NSArray *currentTripUsers;
+@property (nonatomic) NSMutableArray *currentTripUsers;
 @property (nonatomic) BOOL fromCreate;
 @property (nonatomic) BOOL isActive;
 

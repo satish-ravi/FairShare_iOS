@@ -34,9 +34,10 @@
 - (void)loadData {
     PFQuery *query = [PFQuery queryWithClassName:[TripUser parseClassName]];
     [query whereKey:@"tripId" equalTo:_currentTrip];
+    [query orderByAscending:@"displayName"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
-            _currentTripUsers = objects;
+            _currentTripUsers = [NSMutableArray arrayWithArray:objects];
             [self.tableView reloadData];
         } else {
             // Log details of the failure
@@ -84,15 +85,50 @@
     cell.lblCommuter.text = tripUser.displayName;
     cell.lblStartLocation.text = tripUser.startLocation;
     cell.lblEndLocation.text = tripUser.endLocation;
+    if (_isActive) {
+        if (cell.lblStartLocation.text == NULL) {
+            cell.lblStartLocation.text = TAP_TO_START;
+        } else if (cell.lblEndLocation.text == NULL) {
+            cell.lblEndLocation.text = TAP_TO_DROP;
+        }
+    }
     cell.imgPicture.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[tripUser.picture url]]]];
     if (tripUser.cost != 0) {
         cell.lblCost.text = [NSString stringWithFormat:@"$ %.2f", tripUser.cost];
     }
     if (tripUser.distance != 0) {
-        cell.lblDistance.text = [NSString stringWithFormat:@"%.2f miles", tripUser.distance];
+        cell.lblDistance.text = [NSString stringWithFormat:@"%.2f miles", [Utils getMilesFromMeters:tripUser.distance]];
     }
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    TripDetailsTableViewCell *cell = (TripDetailsTableViewCell*) [tableView cellForRowAtIndexPath:indexPath];
+    NSLog(@"Tapped: %@", indexPath);
+    NSLog(@"Start: %@", cell.lblStartLocation.text);
+    NSLog(@"End: %@", cell.lblEndLocation.text);
+    TripUser *tripUser = [_currentTripUsers objectAtIndex:indexPath.row];
+    if ([TAP_TO_START isEqualToString:cell.lblStartLocation.text]) {
+        tripUser.startLocGeo =[PFGeoPoint geoPointWithLatitude:40.4528419 longitude:-79.9113629];
+        tripUser.startLocation = @"201 Conover Road";
+        [tripUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            [tableView reloadData];
+        }];
+        
+    }
+    if ([TAP_TO_DROP isEqualToString:cell.lblEndLocation.text]) {
+        tripUser.endLocGeo =[PFGeoPoint geoPointWithLatitude:40.4455908 longitude:-79.9492398];
+        tripUser.endLocation = @"300 S Craig Street";
+        [tripUser saveInBackground];
+        [tripUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            [tripUser fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+                [_currentTripUsers replaceObjectAtIndex:indexPath.row withObject:object];
+                [tableView reloadData];
+            }];
+        }];
+    }
+    
 }
 
 /*

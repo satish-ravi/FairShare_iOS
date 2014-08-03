@@ -41,6 +41,7 @@
 
 #pragma mark - Navigation
 
+/*
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -50,7 +51,7 @@
         tripDetailsVC.fromCreate = YES;
         tripDetailsVC.currentTripUsers = [NSArray arrayWithArray:tripUserArr];
     }
-}
+}*/
 
 - (IBAction)chooseFriendsClicked:(UIButton *)sender {
     NSString *tripName = [_txtTripName.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
@@ -93,9 +94,9 @@
     if (count) {
         TripUser *currentUsr = [[TripUser alloc] init];
         currentUsr.tripId = trip;
-        currentUsr.commuterId = [[PFUser currentUser] objectForKey:@"fbId"];
-        currentUsr.displayName = [[PFUser currentUser] objectForKey:@"displayName"];
-        currentUsr.picture = [[PFUser currentUser] objectForKey:@"picture"];
+        currentUsr.commuterId = [[PFUser currentUser] objectForKey:USER_FB_ID];
+        currentUsr.displayName = [[PFUser currentUser] objectForKey:USER_DISPLAY_NAME];
+        currentUsr.picture = [[PFUser currentUser] objectForKey:USER_PICTURE];
         [tripUserArr addObject:currentUsr];
         NSLog(@"%d friends selected", count);
         [trip saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {

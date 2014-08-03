@@ -45,7 +45,7 @@
 - (void)loadData {
     tableData = [NSArray arrayWithObjects:nil, nil];
     [PFCloud callFunctionInBackground:@"getTripByUser"
-                       withParameters:@{@"userId": [[PFUser currentUser] objectForKey:@"fbId"]}
+                       withParameters:@{@"userId": [[PFUser currentUser] objectForKey:USER_FB_ID]}
                                 block:^(NSArray *result, NSError *error) {
                                     if (!error) {
                                         tableData = result;
@@ -96,8 +96,10 @@
     cell.lblTripName.text = trip.tripName;
     if (trip.startLocation != NULL && trip.endLocation != NULL) {
         cell.lblLocation.text = [NSString stringWithFormat:@"%@ - %@", trip.startLocation, trip.endLocation];
+        cell.backgroundColor = [UIColor clearColor];
     } else {
-        cell.lblLocation.text = @"";
+        cell.lblLocation.text = TRIP_ACTIVE_DISPLAY;
+        cell.backgroundColor = [UIColor greenColor];
     }
     cell.lblTripDate.text = [Utils getDateAsStringWithDate:trip.tripDate Format:@"yyyy-MM-dd"];
     return cell;
@@ -150,9 +152,12 @@
         if (_fromCreate) {
             NSLog(@"Trip created. Going to trip details");
             tripDetailsVC.currentTrip = _createdTrip;
+            tripDetailsVC.isActive = YES;
             _fromCreate = NO;
         } else {
             NSLog(@"Selected Row: %ld", (long)[self.tableView indexPathForSelectedRow].row);
+            TripTableViewCell* cell = (TripTableViewCell*) [self.tableView cellForRowAtIndexPath:[self.tableView indexPathForSelectedRow]];
+            tripDetailsVC.isActive = [TRIP_ACTIVE_DISPLAY isEqualToString:cell.lblLocation.text];
             tripDetailsVC.currentTrip = [tableData objectAtIndex:[self.tableView indexPathForSelectedRow].row];
         }
     } else if ([[segue identifier] isEqualToString:@"addTripSegue"]) {

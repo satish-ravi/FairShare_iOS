@@ -15,6 +15,7 @@
 		31145610198AEB3A00CF01D8 /* EditLocTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3114560F198AEB3A00CF01D8 /* EditLocTableViewCell.m */; };
 		31145613198AEC5F00CF01D8 /* EditTripTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31145612198AEC5F00CF01D8 /* EditTripTableViewController.m */; };
 		3153D0FF19897FD3008B3267 /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = 3153D0FE19897FD3008B3267 /* Trip.m */; };
+		3167622D198DA7D00031FD29 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 3167622C198DA7D00031FD29 /* Constants.m */; };
 		31E2C7F919899C0B002AD1E3 /* TripTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E2C7F819899C0B002AD1E3 /* TripTableViewCell.m */; };
 		B57D833619884F6F005FEA20 /* TripsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B57D833519884F6F005FEA20 /* TripsTableViewController.m */; };
 		B57D8338198934EC005FEA20 /* login-button-small.png in Resources */ = {isa = PBXBuildFile; fileRef = B57D8337198934EC005FEA20 /* login-button-small.png */; };
@@ -57,23 +58,25 @@
 		311455FD198AC97200CF01D8 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		311455FE198AC97200CF01D8 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		31145600198ACEAF00CF01D8 /* TripDetailsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripDetailsTableViewController.h; sourceTree = "<group>"; };
-		31145601198ACEAF00CF01D8 /* TripDetailsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripDetailsTableViewController.m; sourceTree = "<group>"; };
+		31145601198ACEAF00CF01D8 /* TripDetailsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TripDetailsTableViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		31145603198AD18500CF01D8 /* TripUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripUser.h; sourceTree = "<group>"; };
 		31145604198AD18500CF01D8 /* TripUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripUser.m; sourceTree = "<group>"; };
 		31145607198AD31200CF01D8 /* TripDetailsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripDetailsTableViewCell.h; sourceTree = "<group>"; };
 		31145608198AD31200CF01D8 /* TripDetailsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripDetailsTableViewCell.m; sourceTree = "<group>"; };
 		3114560B198AE37700CF01D8 /* CreateTripViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTripViewController.h; sourceTree = "<group>"; };
-		3114560C198AE37700CF01D8 /* CreateTripViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTripViewController.m; sourceTree = "<group>"; };
+		3114560C198AE37700CF01D8 /* CreateTripViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CreateTripViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3114560E198AEB3A00CF01D8 /* EditLocTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditLocTableViewCell.h; sourceTree = "<group>"; };
 		3114560F198AEB3A00CF01D8 /* EditLocTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditLocTableViewCell.m; sourceTree = "<group>"; };
 		31145611198AEC5F00CF01D8 /* EditTripTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTripTableViewController.h; sourceTree = "<group>"; };
 		31145612198AEC5F00CF01D8 /* EditTripTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTripTableViewController.m; sourceTree = "<group>"; };
 		3153D0FD19897FD3008B3267 /* Trip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trip.h; sourceTree = "<group>"; };
 		3153D0FE19897FD3008B3267 /* Trip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Trip.m; sourceTree = "<group>"; };
+		3167622B198DA7D00031FD29 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		3167622C198DA7D00031FD29 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Constants.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		31E2C7F719899C0B002AD1E3 /* TripTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TripTableViewCell.h; path = ../TripTableViewCell.h; sourceTree = "<group>"; };
 		31E2C7F819899C0B002AD1E3 /* TripTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TripTableViewCell.m; path = ../TripTableViewCell.m; sourceTree = "<group>"; };
 		B57D833419884F6F005FEA20 /* TripsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripsTableViewController.h; sourceTree = "<group>"; };
-		B57D833519884F6F005FEA20 /* TripsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripsTableViewController.m; sourceTree = "<group>"; };
+		B57D833519884F6F005FEA20 /* TripsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TripsTableViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		B57D8337198934EC005FEA20 /* login-button-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-button-small.png"; sourceTree = "<group>"; };
 		B5EADEBC19883BF80013524C /* fairshare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fairshare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5EADEBF19883BF80013524C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -87,7 +90,7 @@
 		B5EADECF19883BF80013524C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B5EADED219883BF80013524C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B5EADED419883BF80013524C /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
-		B5EADED519883BF80013524C /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		B5EADED519883BF80013524C /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = LoginViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		B5EADED719883BF80013524C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B5EADEDD19883BF80013524C /* fairshareTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = fairshareTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5EADEDE19883BF80013524C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -168,6 +171,17 @@
 			name = Controller;
 			sourceTree = "<group>";
 		};
+		3167622E198DB11C0031FD29 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				311455FD198AC97200CF01D8 /* Utils.h */,
+				311455FE198AC97200CF01D8 /* Utils.m */,
+				3167622B198DA7D00031FD29 /* Constants.h */,
+				3167622C198DA7D00031FD29 /* Constants.m */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
 		31E2C7F619899544002AD1E3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -221,11 +235,10 @@
 		B5EADEC519883BF80013524C /* fairshare */ = {
 			isa = PBXGroup;
 			children = (
+				3167622E198DB11C0031FD29 /* Utils */,
 				3114560A198ADABC00CF01D8 /* Controller */,
 				31145606198AD2DE00CF01D8 /* View */,
 				31E2C7F619899544002AD1E3 /* Model */,
-				311455FD198AC97200CF01D8 /* Utils.h */,
-				311455FE198AC97200CF01D8 /* Utils.m */,
 				B5EADECE19883BF80013524C /* AppDelegate.h */,
 				B5EADECF19883BF80013524C /* AppDelegate.m */,
 				B5EADED119883BF80013524C /* Main.storyboard */,
@@ -368,6 +381,7 @@
 				3153D0FF19897FD3008B3267 /* Trip.m in Sources */,
 				3114560D198AE37700CF01D8 /* CreateTripViewController.m in Sources */,
 				B5EADED619883BF80013524C /* LoginViewController.m in Sources */,
+				3167622D198DA7D00031FD29 /* Constants.m in Sources */,
 				31E2C7F919899C0B002AD1E3 /* TripTableViewCell.m in Sources */,
 				B5EADED019883BF80013524C /* AppDelegate.m in Sources */,
 				B57D833619884F6F005FEA20 /* TripsTableViewController.m in Sources */,

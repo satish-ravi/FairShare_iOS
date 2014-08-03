@@ -26,4 +26,7 @@
     NSString *urlString = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture", userId];
     return [Utils getFileObjFromUrlString:urlString fileName:[NSString stringWithFormat:@"%@.jpg", userId]];
 }
++(double) getMilesFromMeters:(double)meters {
+    return meters / 1609.34;
+}
 @end

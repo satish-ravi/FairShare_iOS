@@ -12,5 +12,6 @@
 +(NSString*) getDateAsStringWithDate:(NSDate*) date Format:(NSString*) format;
 +(PFFile*) getFileObjFromUrlString:(NSString*) urlString fileName:(NSString*) fileName;
 +(PFFile*) getPictureFileFromUserId:(NSString*) userId;
++(double) getMilesFromMeters:(double) meters;
 
 @end

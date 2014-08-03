@@ -47,8 +47,8 @@
         
         else
         {
-            NSLog(@"FB ID: %@", [user objectForKey:@"fbId"]);
-            if ([user objectForKey:@"fbId"] == NULL || [user objectForKey:@"displayName"] == NULL || [user objectForKey:@"picture"] == NULL) {
+            NSLog(@"FB ID: %@", [user objectForKey:USER_FB_ID]);
+            if ([user objectForKey:USER_FB_ID] == NULL || [user objectForKey:USER_DISPLAY_NAME] == NULL || [user objectForKey:USER_PICTURE] == NULL) {
                 NSLog(@"Retrieving facebook id and name");
                 [FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
                     if (!error) {
@@ -58,9 +58,9 @@
                         [file saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                             if (!error) {
                                 // Store the current user's Facebook ID on the user
-                                [user setObject:userId forKey:@"fbId"];
-                                [user setObject:[result objectForKey:@"name"] forKey:@"displayName"];
-                                [user setObject:file forKey:@"picture"];
+                                [user setObject:userId forKey:USER_FB_ID];
+                                [user setObject:[result objectForKey:@"name"] forKey:USER_DISPLAY_NAME];
+                                [user setObject:file forKey:USER_PICTURE];
                                 [user saveInBackground];
                                 NSLog(@"Saved fbid, name, file");
                                 [self performSegueWithIdentifier:@"tripsSegue" sender:self.view];

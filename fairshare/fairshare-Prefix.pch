@@ -19,4 +19,5 @@
 #import "Trip.h"
 #import "TripUser.h"
 #import "TripDetailsTableViewController.h"
+#import "Constants.h"
 #endif
