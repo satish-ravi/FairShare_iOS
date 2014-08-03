@@ -87,7 +87,6 @@
         tripUser.tripId = trip;
         tripUser.commuterId = [user objectID];
         tripUser.displayName = user.name;
-        tripUser.picture = [Utils getPictureFileFromUserId:[user objectID]];
         [tripUserArr addObject:tripUser];
         count++;
     }
@@ -96,13 +95,11 @@
         currentUsr.tripId = trip;
         currentUsr.commuterId = [[PFUser currentUser] objectForKey:USER_FB_ID];
         currentUsr.displayName = [[PFUser currentUser] objectForKey:USER_DISPLAY_NAME];
-        currentUsr.picture = [[PFUser currentUser] objectForKey:USER_PICTURE];
         [tripUserArr addObject:currentUsr];
         NSLog(@"%d friends selected", count);
         [trip saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (!error && succeeded) {
                 for (TripUser *tripUser in tripUserArr) {
-                    [tripUser.picture saveInBackground];
                     [tripUser saveInBackground];
                 }
                 [self dismissViewControllerAnimated:YES completion:NULL];

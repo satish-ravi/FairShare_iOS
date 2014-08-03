@@ -19,7 +19,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    [PFUser logOut];
     if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
         NSLog(@"User logged in already");
         [self performSegueWithIdentifier:@"tripsSegue" sender:self.view];
@@ -55,20 +54,12 @@
                     if (!error) {
                         NSString *userId = [result objectID];
                         NSLog(@"Results: %@", result);
-                        PFFile *file = [Utils getPictureFileFromUserId:userId];
-                        [file saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                            if (!error) {
-                                // Store the current user's Facebook ID on the user
-                                [user setObject:userId forKey:USER_FB_ID];
-                                [user setObject:[result objectForKey:@"name"] forKey:USER_DISPLAY_NAME];
-                                [user setObject:file forKey:USER_PICTURE];
-                                [user saveInBackground];
-                                NSLog(@"Saved fbid, name, file");
-                                [self performSegueWithIdentifier:@"tripsSegue" sender:self.view];
-                            } else {
-                                NSLog(@"Error when saving file");
-                            }
-                        }];
+                        // Store the current user's Facebook ID on the user
+                        [user setObject:userId forKey:USER_FB_ID];
+                        [user setObject:[result objectForKey:@"name"] forKey:USER_DISPLAY_NAME];
+                        [user saveInBackground];
+                        NSLog(@"Saved fbid, name, file");
+                        [self performSegueWithIdentifier:@"tripsSegue" sender:self.view];
                     }
                 }];
             } else {

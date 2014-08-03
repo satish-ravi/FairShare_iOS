@@ -108,7 +108,7 @@
             cell.lblEndLocation.text = TAP_TO_DROP;
         }
     }
-    cell.imgPicture.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[tripUser.picture url]]]];
+    [cell.imgFBPicture setProfileID:tripUser.commuterId];
     if (tripUser.cost != 0) {
         cell.lblCost.text = [NSString stringWithFormat:@"$ %.2f", tripUser.cost];
     }

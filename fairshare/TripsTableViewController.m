@@ -92,7 +92,6 @@
         cell = [[TripTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"tripsId"];
     }
     Trip *trip = [tableData objectAtIndex:indexPath.row];
-    NSLog(@"Trip:%@", trip);
     cell.lblTripName.text = trip.tripName;
     if (trip.startLocation != NULL && trip.endLocation != NULL) {
         cell.lblLocation.text = [NSString stringWithFormat:@"%@ - %@", trip.startLocation, trip.endLocation];

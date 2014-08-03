@@ -17,6 +17,7 @@
     // Override point for customization after application launch.
     [Parse setApplicationId:@"8670VmAcvjt4wvLbpEQWTWviW8WIpDNePGUdCvUA" clientKey:@"vTGi3cFFJDjK0Glbx2Z4Z8B5SHlG2MiczHShlo04"];
     [PFFacebookUtils initializeFacebook];
+    [FBProfilePictureView class];
     return YES;
     
 }

@@ -123,10 +123,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Rb-7G-kV6">
-                                            <rect key="frame" x="6" y="6" width="56" height="53"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="commuter" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L8o-Iz-vNq">
                                             <rect key="frame" x="70" y="6" width="126" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -157,10 +153,15 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="75Y-AC-7er" customClass="FBProfilePictureView">
+                                            <rect key="frame" x="9" y="6" width="53" height="53"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        </view>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="imgPicture" destination="0Rb-7G-kV6" id="EMi-Xr-HEL"/>
+                                    <outlet property="imgFBPicture" destination="75Y-AC-7er" id="XP9-6z-DAt"/>
                                     <outlet property="lblCommuter" destination="L8o-Iz-vNq" id="Heg-Aj-b6f"/>
                                     <outlet property="lblCost" destination="6kA-Je-BMk" id="2QN-Gi-o6f"/>
                                     <outlet property="lblDistance" destination="Hjr-3p-WPH" id="8nh-uG-uG4"/>
@@ -222,10 +223,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qA7-mC-5DU">
-                                            <rect key="frame" x="6" y="6" width="56" height="53"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="commuter" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Xl-h3-5JS">
                                             <rect key="frame" x="70" y="6" width="126" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -256,10 +253,15 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Duq-xU-ZGZ" customClass="FBProfilePictureView">
+                                            <rect key="frame" x="9" y="6" width="53" height="53"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        </view>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="imgPicture" destination="qA7-mC-5DU" id="8GJ-7H-s8M"/>
+                                    <outlet property="imgFBPicture" destination="Duq-xU-ZGZ" id="ALD-hM-NCX"/>
                                     <outlet property="lblCommuter" destination="4Xl-h3-5JS" id="6Ag-7Q-udp"/>
                                     <outlet property="lblCost" destination="llg-vB-ubg" id="vnO-aC-2Ia"/>
                                     <outlet property="lblDistance" destination="olG-3Z-55L" id="RDX-WL-wDp"/>

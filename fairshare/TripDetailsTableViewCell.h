@@ -14,6 +14,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblEndLocation;
 @property (weak, nonatomic) IBOutlet UILabel *lblCost;
 @property (weak, nonatomic) IBOutlet UILabel *lblDistance;
-@property (weak, nonatomic) IBOutlet UIImageView *imgPicture;
+@property (weak, nonatomic) IBOutlet FBProfilePictureView *imgFBPicture;
 
 @end
