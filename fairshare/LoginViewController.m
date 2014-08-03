@@ -19,6 +19,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    [PFUser logOut];
     if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
         NSLog(@"User logged in already");
         [self performSegueWithIdentifier:@"tripsSegue" sender:self.view];
