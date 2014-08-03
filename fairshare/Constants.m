@@ -18,6 +18,7 @@ NSString * const ALERT_TOTAL_MESSAGE = @"Enter the total expense";
 NSString * const ALERT_CANCEL = @"Cancel";
 NSString * const ALERT_CONFIRM = @"Confirm";
 CGFloat    const SELECTED_ROW_HEIGHT = 85;
+NSString * const CHOOSE_ADDRESS = @"Select Matching Address:";
 
 NSString * const USER_FB_ID = @"fbId";
 NSString * const USER_DISPLAY_NAME = @"displayName";

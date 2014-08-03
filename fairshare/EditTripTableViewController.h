@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "TripDetailsTableViewController.h"
 
-@interface EditTripTableViewController : TripDetailsTableViewController
+@interface EditTripTableViewController : TripDetailsTableViewController <UIActionSheetDelegate>
 
 @end

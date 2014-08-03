@@ -73,6 +73,7 @@
 		3153D0FE19897FD3008B3267 /* Trip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Trip.m; sourceTree = "<group>"; };
 		3167622B198DA7D00031FD29 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		3167622C198DA7D00031FD29 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Constants.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		31D1C48E198EDCD4000E15C8 /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text; path = Location.gpx; sourceTree = "<group>"; };
 		31E2C7F719899C0B002AD1E3 /* TripTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TripTableViewCell.h; path = ../TripTableViewCell.h; sourceTree = "<group>"; };
 		31E2C7F819899C0B002AD1E3 /* TripTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TripTableViewCell.m; path = ../TripTableViewCell.m; sourceTree = "<group>"; };
 		B57D833419884F6F005FEA20 /* TripsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripsTableViewController.h; sourceTree = "<group>"; };
@@ -196,6 +197,7 @@
 		B5EADEB319883BF80013524C = {
 			isa = PBXGroup;
 			children = (
+				31D1C48E198EDCD4000E15C8 /* Location.gpx */,
 				B5EADEC519883BF80013524C /* fairshare */,
 				B5EADEE419883BF80013524C /* fairshareTests */,
 				B5EADEBE19883BF80013524C /* Frameworks */,

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TripDetailsTableViewCell.h"
 
 @interface TripDetailsTableViewController : UITableViewController <UIAlertViewDelegate, CLLocationManagerDelegate>
 
@@ -14,5 +15,6 @@
 @property (nonatomic) NSMutableArray *currentTripUsers;
 @property (nonatomic) BOOL fromCreate;
 @property (nonatomic) BOOL isActive;
+-(void) loadData;
 
 @end

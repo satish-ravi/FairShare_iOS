@@ -15,6 +15,10 @@
 
 @implementation EditTripTableViewController {
     long selectedRow;
+    NSIndexPath *selectedIndex;
+    CLGeocoder *geocoder;
+    NSArray* placemarksList;
+    int selectionType;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -36,6 +40,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     selectedRow = -1;
+    geocoder = [[CLGeocoder alloc]init];
 }
 
 - (void)didReceiveMemoryWarning
@@ -90,6 +95,7 @@
         }
     }
     selectedRow = currentRow;
+    selectedIndex = indexPath;
     [self.tableView reloadData];
 }
 
@@ -98,7 +104,74 @@
     if (selectedRow != -1 && indexPath.row == selectedRow + 1) {
         return SELECTED_ROW_HEIGHT;
     }
-    return [super tableView:tableView heightForRowAtIndexPath:indexPath]; 
+    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+}
+- (IBAction)startSearch:(UITextField *)sender {
+    NSLog(@"Start Search clicked");
+    selectionType = 0;
+    [self searchClickedWithField:sender];
+}
+- (IBAction)endSearch:(UITextField *)sender {
+    NSLog(@"End Search clicked");
+    selectionType = 1;
+    [self searchClickedWithField:sender];
+}
+
+-(void) searchClickedWithField: (UITextField*) sender {
+    TripDetailsTableViewCell *cell = (TripDetailsTableViewCell*) [self.tableView cellForRowAtIndexPath:selectedIndex];
+    NSString* compareText;
+    if (selectionType == 0) {
+        compareText = cell.lblStartLocation.text;
+    } else {
+        compareText = cell.lblEndLocation.text;
+    };
+    if (![compareText isEqualToString:sender.text]) {
+        NSLog(@"Field changed");
+        [geocoder geocodeAddressString:sender.text completionHandler:^(NSArray *placemarks, NSError *error) {
+            if (!error) {
+                if ([placemarks count] > 0) {
+                    placemarksList = placemarks;
+                    NSArray* addList = [Utils getAddressesFromPlaceMarkArr:placemarks];
+                    UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:CHOOSE_ADDRESS delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
+                    for (NSString *title in addList) {
+                        [popup addButtonWithTitle:title];
+                    }
+                    [popup addButtonWithTitle:ALERT_CANCEL];
+                    popup.cancelButtonIndex = [addList count];
+                    [popup showInView:self.view];
+                } else {
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No address found" message:@"Uh oh. No address match the given address." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Dismiss", nil];
+                    [alert show];
+                    [sender becomeFirstResponder];
+                }
+            } else {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No address found" message:@"Uh oh. No address match the given address." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Dismiss", nil];
+                [alert show];
+                [sender becomeFirstResponder];
+            }
+        }];
+    }
+    
+    
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex < [placemarksList count]) {
+        CLPlacemark* placemark = [placemarksList objectAtIndex:buttonIndex];
+        NSString* selectedAddress = [Utils getDisplayAddress:placemark];
+        PFGeoPoint* selectedGeoPoint = [PFGeoPoint geoPointWithLocation:placemark.location];
+        TripUser *selectedUser = [self.currentTripUsers objectAtIndex:selectedRow];
+        if (selectionType == 0) {
+            selectedUser.startLocation = selectedAddress;
+            selectedUser.startLocGeo = selectedGeoPoint;
+        } else {
+            selectedUser.endLocation = selectedAddress;
+            selectedUser.endLocGeo = selectedGeoPoint;
+        }
+        [selectedUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            [self loadData];
+        }];
+    }
 }
 
 /*

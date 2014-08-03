@@ -30,8 +30,23 @@
     return meters / 1609.34;
 }
 
-+(NSString*) getFormattedAddress:(CLPlacemark*) placemark {
++(NSString*) getDisplayAddress:(CLPlacemark*) placemark {
     NSDictionary* address = placemark.addressDictionary;
     return (NSString*) [address objectForKey:@"Street"];
+}
+
++(NSString*) getFullAddress:(CLPlacemark*) placemark {
+    NSDictionary* address = placemark.addressDictionary;
+    NSArray* addressLines = [address objectForKey:@"FormattedAddressLines"];
+    NSString* line1 = [addressLines objectAtIndex:0];
+    return [line1 stringByAppendingString:[addressLines objectAtIndex:1]];
+}
+
++(NSArray*) getAddressesFromPlaceMarkArr:(NSArray*) placemarkArr {
+    NSMutableArray* addresses = [NSMutableArray array];
+    for (CLPlacemark* placeMark in placemarkArr) {
+        [addresses addObject:[self getFullAddress:placeMark]];
+    }
+    return addresses;
 }
 @end

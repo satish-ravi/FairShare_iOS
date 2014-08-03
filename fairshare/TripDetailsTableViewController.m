@@ -7,8 +7,6 @@
 //
 
 #import "TripDetailsTableViewController.h"
-#import "TripDetailsTableViewCell.h"
-
 
 @implementation TripDetailsTableViewController
 {
@@ -142,7 +140,7 @@
     if(currentLocation != nil) {
         [geocoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray *placemarks, NSError *error) {
             if(error==nil && [placemarks count]>0){
-                NSString* address = [Utils getFormattedAddress:[placemarks lastObject]];
+                NSString* address = [Utils getDisplayAddress:[placemarks lastObject]];
                 NSIndexPath *indexPath =[self.tableView indexPathForSelectedRow];
                 TripUser *tripUser = [_currentTripUsers objectAtIndex:indexPath.row];
                 TripDetailsTableViewCell *cell = (TripDetailsTableViewCell*) [self.tableView cellForRowAtIndexPath:indexPath];
