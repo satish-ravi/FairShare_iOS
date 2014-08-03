@@ -18,6 +18,7 @@ extern NSString * const ALERT_TOTAL_TITLE;
 extern NSString * const ALERT_TOTAL_MESSAGE;
 extern NSString * const ALERT_CANCEL;
 extern NSString * const ALERT_CONFIRM;
+extern CGFloat    const SELECTED_ROW_HEIGHT;
 
 // Parse Constants
 extern NSString * const USER_FB_ID;

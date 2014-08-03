@@ -48,7 +48,7 @@
         else
         {
             NSLog(@"FB ID: %@", [user objectForKey:USER_FB_ID]);
-            if ([user objectForKey:USER_FB_ID] == NULL || [user objectForKey:USER_DISPLAY_NAME] == NULL || [user objectForKey:USER_PICTURE] == NULL) {
+            if ([user objectForKey:USER_FB_ID] == NULL || [user objectForKey:USER_DISPLAY_NAME] == NULL) {
                 NSLog(@"Retrieving facebook id and name");
                 [FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
                     if (!error) {

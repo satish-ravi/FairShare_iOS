@@ -93,6 +93,14 @@
     [self.tableView reloadData];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (selectedRow != -1 && indexPath.row == selectedRow + 1) {
+        return SELECTED_ROW_HEIGHT;
+    }
+    return [super tableView:tableView heightForRowAtIndexPath:indexPath]; 
+}
+
 /*
  // Override to support conditional editing of the table view.
  - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

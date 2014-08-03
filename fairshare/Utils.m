@@ -29,4 +29,9 @@
 +(double) getMilesFromMeters:(double)meters {
     return meters / 1609.34;
 }
+
++(NSString*) getFormattedAddress:(CLPlacemark*) placemark {
+    NSDictionary* address = placemark.addressDictionary;
+    return (NSString*) [address objectForKey:@"Street"];
+}
 @end

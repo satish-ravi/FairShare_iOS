@@ -13,5 +13,6 @@
 +(PFFile*) getFileObjFromUrlString:(NSString*) urlString fileName:(NSString*) fileName;
 +(PFFile*) getPictureFileFromUserId:(NSString*) userId;
 +(double) getMilesFromMeters:(double) meters;
++(NSString*) getFormattedAddress:(CLPlacemark*) placemark;
 
 @end

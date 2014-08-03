@@ -14,8 +14,6 @@
 {
     CLLocationManager *locManager;
     CLGeocoder *geocoder;
-    CLPlacemark *placemark;
-    NSString *address;
 }
 
 
@@ -144,8 +142,7 @@
     if(currentLocation != nil) {
         [geocoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray *placemarks, NSError *error) {
             if(error==nil && [placemarks count]>0){
-                placemark = [placemarks lastObject];
-                address = [NSString stringWithFormat:@"%@", placemark.thoroughfare];
+                NSString* address = [Utils getFormattedAddress:[placemarks lastObject]];
                 NSIndexPath *indexPath =[self.tableView indexPathForSelectedRow];
                 TripUser *tripUser = [_currentTripUsers objectAtIndex:indexPath.row];
                 TripDetailsTableViewCell *cell = (TripDetailsTableViewCell*) [self.tableView cellForRowAtIndexPath:indexPath];
