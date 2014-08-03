@@ -9,7 +9,19 @@
 #import "TripDetailsTableViewController.h"
 #import "TripDetailsTableViewCell.h"
 
+
 @implementation TripDetailsTableViewController
+{
+    CLLocationManager *manager;
+    CLGeocoder *geocoder;
+    CLPlacemark *placemark;
+    NSString *latitude;
+    NSString *longitude;
+    double lat;
+    double lon;
+    NSString *address;
+}
+
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -25,7 +37,9 @@
     [super viewDidLoad];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
-    
+    manager = [[CLLocationManager alloc]init];
+    geocoder = [[CLGeocoder alloc]init];
+
     UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Total" style:UIBarButtonItemStylePlain target:self action:@selector(totalButtonPressed)];
     NSMutableArray *barbuttonItems = [NSMutableArray arrayWithArray:self.navigationItem.rightBarButtonItems];
     [barbuttonItems addObject:saveButton];
@@ -109,23 +123,28 @@
     return cell;
 }
 
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    manager.delegate =self;
+    manager.desiredAccuracy = kCLLocationAccuracyBest;
+    [manager startUpdatingLocation];
+
     TripDetailsTableViewCell *cell = (TripDetailsTableViewCell*) [tableView cellForRowAtIndexPath:indexPath];
     NSLog(@"Tapped: %@", indexPath);
     NSLog(@"Start: %@", cell.lblStartLocation.text);
     NSLog(@"End: %@", cell.lblEndLocation.text);
     TripUser *tripUser = [_currentTripUsers objectAtIndex:indexPath.row];
     if ([TAP_TO_START isEqualToString:cell.lblStartLocation.text]) {
-        tripUser.startLocGeo =[PFGeoPoint geoPointWithLatitude:40.4528419 longitude:-79.9113629];
-        tripUser.startLocation = @"201 Conover Road";
+        tripUser.startLocGeo =[PFGeoPoint geoPointWithLatitude:lat longitude:lon];
+        tripUser.startLocation = address;
         [tripUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             [tableView reloadData];
         }];
         
     }
     if ([TAP_TO_DROP isEqualToString:cell.lblEndLocation.text]) {
-        tripUser.endLocGeo =[PFGeoPoint geoPointWithLatitude:40.4455908 longitude:-79.9492398];
-        tripUser.endLocation = @"300 S Craig Street";
+        tripUser.endLocGeo =[PFGeoPoint geoPointWithLatitude:lat longitude:lon];
+        tripUser.endLocation = address;
         [tripUser saveInBackground];
         [tripUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             [tripUser fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
@@ -136,6 +155,34 @@
     }
     
 }
+-(void) locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+    NSLog(@"Error:%@", error);
+    NSLog(@"Failed to get location!");
+}
+-(void) locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
+    NSLog(@"Location: %@", newLocation);
+    CLLocation *currentLocation = newLocation;
+    if(currentLocation != nil) {
+        latitude = [NSString stringWithFormat:@"%f",currentLocation.coordinate.latitude];
+        longitude = [NSString stringWithFormat:@"%f",currentLocation.coordinate.longitude];
+        lat = [latitude doubleValue];
+        lon = [longitude doubleValue];
+        [geocoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray *placemarks, NSError *error) {
+            if(error==nil && [placemarks count]>0){
+                
+                placemark = [placemarks lastObject];
+                address = [NSString stringWithFormat:@"%@", placemark.subLocality];
+                
+            }
+            else{
+                NSLog(@"%@", error.debugDescription);
+            }
+            
+        }];
+        
+    }
+}
+
 
 - (void)totalButtonPressed {
     NSLog(@"Total button pressed");
