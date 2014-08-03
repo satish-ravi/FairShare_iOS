@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @protocol CreateTripViewControllerDelegate <NSObject>
-- (void)setCreatedTrip:(Trip *)trip;
+- (void)setCreatedTrip:(Trip *)trip TripUsers:(NSMutableArray*) tripUsers;
 @end
 
 @interface CreateTripViewController : UIViewController <FBViewControllerDelegate>

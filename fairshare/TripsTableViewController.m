@@ -153,6 +153,8 @@
             NSLog(@"Trip created. Going to trip details");
             tripDetailsVC.currentTrip = _createdTrip;
             tripDetailsVC.isActive = YES;
+            tripDetailsVC.fromCreate = YES;
+            tripDetailsVC.currentTripUsers = _createdTripUsers;
             _fromCreate = NO;
         } else {
             NSLog(@"Selected Row: %ld", (long)[self.tableView indexPathForSelectedRow].row);
@@ -166,10 +168,11 @@
     }
 }
 
-- (void)setCreatedTrip:(Trip *)trip {
+- (void)setCreatedTrip:(Trip *)trip TripUsers:(NSMutableArray*) tripUsers{
     NSLog(@"Setting trip delegate");
     _createdTrip = trip;
     _fromCreate = YES;
+    _createdTripUsers = tripUsers;
 }
 
 @end

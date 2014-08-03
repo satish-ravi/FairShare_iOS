@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TripDetailsTableViewController : UITableViewController <UIAlertViewDelegate>
+@interface TripDetailsTableViewController : UITableViewController <UIAlertViewDelegate, CLLocationManagerDelegate>
 
 @property (nonatomic) Trip* currentTrip;
 @property (nonatomic) NSMutableArray *currentTripUsers;

@@ -13,5 +13,6 @@
 
 @property (nonatomic) BOOL fromCreate;
 @property (nonatomic) Trip *createdTrip;
+@property (nonatomic) NSMutableArray *createdTripUsers;
 
 @end

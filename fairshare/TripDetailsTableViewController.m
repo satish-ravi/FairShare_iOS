@@ -12,13 +12,9 @@
 
 @implementation TripDetailsTableViewController
 {
-    CLLocationManager *manager;
+    CLLocationManager *locManager;
     CLGeocoder *geocoder;
     CLPlacemark *placemark;
-    NSString *latitude;
-    NSString *longitude;
-    double lat;
-    double lon;
     NSString *address;
 }
 
@@ -37,9 +33,9 @@
     [super viewDidLoad];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
-    manager = [[CLLocationManager alloc]init];
+    locManager = [[CLLocationManager alloc]init];
     geocoder = [[CLGeocoder alloc]init];
-
+    
     UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Total" style:UIBarButtonItemStylePlain target:self action:@selector(totalButtonPressed)];
     NSMutableArray *barbuttonItems = [NSMutableArray arrayWithArray:self.navigationItem.rightBarButtonItems];
     [barbuttonItems addObject:saveButton];
@@ -125,53 +121,53 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    manager.delegate =self;
-    manager.desiredAccuracy = kCLLocationAccuracyBest;
-    [manager startUpdatingLocation];
-
+    locManager.delegate =self;
+    locManager.desiredAccuracy = kCLLocationAccuracyBest;
+    
     TripDetailsTableViewCell *cell = (TripDetailsTableViewCell*) [tableView cellForRowAtIndexPath:indexPath];
     NSLog(@"Tapped: %@", indexPath);
     NSLog(@"Start: %@", cell.lblStartLocation.text);
     NSLog(@"End: %@", cell.lblEndLocation.text);
-    TripUser *tripUser = [_currentTripUsers objectAtIndex:indexPath.row];
-    if ([TAP_TO_START isEqualToString:cell.lblStartLocation.text]) {
-        tripUser.startLocGeo =[PFGeoPoint geoPointWithLatitude:lat longitude:lon];
-        tripUser.startLocation = address;
-        [tripUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            [tableView reloadData];
-        }];
-        
-    }
-    if ([TAP_TO_DROP isEqualToString:cell.lblEndLocation.text]) {
-        tripUser.endLocGeo =[PFGeoPoint geoPointWithLatitude:lat longitude:lon];
-        tripUser.endLocation = address;
-        [tripUser saveInBackground];
-        [tripUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            [tripUser fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-                [_currentTripUsers replaceObjectAtIndex:indexPath.row withObject:object];
-                [tableView reloadData];
-            }];
-        }];
+    if ([TAP_TO_START isEqualToString:cell.lblStartLocation.text] || [TAP_TO_DROP isEqualToString:cell.lblEndLocation.text]) {
+        [locManager startUpdatingLocation];
     }
     
 }
 -(void) locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
     NSLog(@"Error:%@", error);
     NSLog(@"Failed to get location!");
+    [manager stopUpdatingLocation];
 }
 -(void) locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
     NSLog(@"Location: %@", newLocation);
     CLLocation *currentLocation = newLocation;
     if(currentLocation != nil) {
-        latitude = [NSString stringWithFormat:@"%f",currentLocation.coordinate.latitude];
-        longitude = [NSString stringWithFormat:@"%f",currentLocation.coordinate.longitude];
-        lat = [latitude doubleValue];
-        lon = [longitude doubleValue];
         [geocoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray *placemarks, NSError *error) {
             if(error==nil && [placemarks count]>0){
-                
                 placemark = [placemarks lastObject];
-                address = [NSString stringWithFormat:@"%@", placemark.subLocality];
+                address = [NSString stringWithFormat:@"%@", placemark.thoroughfare];
+                NSIndexPath *indexPath =[self.tableView indexPathForSelectedRow];
+                TripUser *tripUser = [_currentTripUsers objectAtIndex:indexPath.row];
+                TripDetailsTableViewCell *cell = (TripDetailsTableViewCell*) [self.tableView cellForRowAtIndexPath:indexPath];
+                if ([TAP_TO_START isEqualToString:cell.lblStartLocation.text]) {
+                    tripUser.startLocGeo =[PFGeoPoint geoPointWithLocation:newLocation];
+                    tripUser.startLocation = address;
+                    [tripUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                        [self.tableView reloadData];
+                    }];
+                    
+                }
+                if ([TAP_TO_DROP isEqualToString:cell.lblEndLocation.text]) {
+                    tripUser.endLocGeo =[PFGeoPoint geoPointWithLocation:newLocation];
+                    tripUser.endLocation = address;
+                    [tripUser saveInBackground];
+                    [tripUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                        [tripUser fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+                            [_currentTripUsers replaceObjectAtIndex:indexPath.row withObject:object];
+                            [self.tableView reloadData];
+                        }];
+                    }];
+                }
                 
             }
             else{
@@ -179,6 +175,7 @@
             }
             
         }];
+        [manager stopUpdatingLocation];
         
     }
 }
@@ -213,42 +210,42 @@
 }
 
 /*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+ // Override to support conditional editing of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the specified item to be editable.
+ return YES;
+ }
+ */
 
 /*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
+ // Override to support editing the table view.
+ - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ if (editingStyle == UITableViewCellEditingStyleDelete) {
+ // Delete the row from the data source
+ [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+ } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+ // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+ }
+ }
+ */
 
 /*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
+ // Override to support rearranging the table view.
+ - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+ {
+ }
+ */
 
 /*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
+ // Override to support conditional rearranging of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the item to be re-orderable.
+ return YES;
+ }
+ */
 
 
 #pragma mark - Navigation

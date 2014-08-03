@@ -106,7 +106,7 @@
                     [tripUser saveInBackground];
                 }
                 [self dismissViewControllerAnimated:YES completion:NULL];
-                [self.delegate setCreatedTrip:trip];
+                [self.delegate setCreatedTrip:trip TripUsers:tripUserArr];
                 [self.navigationController popViewControllerAnimated:YES];
             }
         }];
