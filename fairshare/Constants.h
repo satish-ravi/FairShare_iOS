@@ -14,6 +14,10 @@
 extern NSString * const TRIP_ACTIVE_DISPLAY;
 extern NSString * const TAP_TO_START;
 extern NSString * const TAP_TO_DROP;
+extern NSString * const ALERT_TOTAL_TITLE;
+extern NSString * const ALERT_TOTAL_MESSAGE;
+extern NSString * const ALERT_CANCEL;
+extern NSString * const ALERT_CONFIRM;
 
 // Parse Constants
 extern NSString * const USER_FB_ID;

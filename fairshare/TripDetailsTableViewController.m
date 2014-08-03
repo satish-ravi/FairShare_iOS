@@ -26,6 +26,12 @@
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
+    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Total" style:UIBarButtonItemStylePlain target:self action:@selector(totalButtonPressed)];
+    NSMutableArray *barbuttonItems = [NSMutableArray arrayWithArray:self.navigationItem.rightBarButtonItems];
+    [barbuttonItems addObject:saveButton];
+    self.navigationItem.rightBarButtonItems = [NSArray arrayWithArray:barbuttonItems];
+    NSLog(@"%@", self.navigationItem.rightBarButtonItems);
+    
     NSLog(@"%@", _currentTrip);
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
@@ -129,6 +135,34 @@
         }];
     }
     
+}
+
+- (void)totalButtonPressed {
+    NSLog(@"Total button pressed");
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:ALERT_TOTAL_TITLE message:ALERT_TOTAL_MESSAGE delegate:self cancelButtonTitle:ALERT_CANCEL otherButtonTitles:ALERT_CONFIRM, nil];
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    UITextField *txtTotal = [alert textFieldAtIndex:0];
+    txtTotal.keyboardType = UIKeyboardTypeDecimalPad;
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    NSLog(@"Button Index =%ld",(long)buttonIndex);
+    if (buttonIndex == 0)
+    {
+        NSLog(@"You have clicked Cancel");
+    }
+    else if(buttonIndex == 1)
+    {
+        UITextField *txtTotal = [alertView textFieldAtIndex:0];
+        double total = [txtTotal.text doubleValue];
+        NSLog(@"Entered total: %f", total);
+        _currentTrip.totalCost = total;
+        [_currentTrip saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            [self loadData];
+        }];
+    }
 }
 
 /*
