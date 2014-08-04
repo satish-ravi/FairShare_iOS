@@ -39,6 +39,10 @@
     //self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self.navigationItem setHidesBackButton:YES];
     tableData = [NSArray arrayWithObjects:nil, nil];
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    NSLog(@"Ref: %@", self.refreshControl);
+    [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
+    self.refreshControl = refreshControl;
     
 }
 
@@ -50,9 +54,11 @@
                                     if (!error) {
                                         tableData = result;
                                         [self.tableView reloadData];
+                                        
                                     } else {
                                         NSLog(@"Error occured %@", error);
                                     }
+                                    [self.refreshControl endRefreshing];
                                 }];
 }
 
@@ -194,6 +200,10 @@
             [self.navigationController popToRootViewControllerAnimated:YES];
             break;
     }
+}
+
+- (void)refresh:(UIRefreshControl *)refreshControl {
+    [self loadData];
 }
 
 @end
