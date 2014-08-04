@@ -12,26 +12,32 @@
 @interface LoginViewController ()
 
 @end
-
 @implementation LoginViewController
-
 - (void)viewDidLoad
 {
+    
     [super viewDidLoad];
+    [PFUser logOut];
+    
 	// Do any additional setup after loading the view, typically from a nib.
     if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
         NSLog(@"User logged in already");
+ 
         [self performSegueWithIdentifier:@"tripsSegue" sender:self.view];
+ 
+       
         
     }
     
 }
 - (IBAction)loginClicked:(id)sender {
+   
+
     NSArray *permissionsArray = @[ @"user_about_me", @"user_relationships", @"user_birthday", @"user_location"];
     
     // Login PFUser using facebook
     [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
-        // [_activityIndicator stopAnimating]; // Hide loading indicator
+       //  [_activityIndicator stopAnimating]; // Hide loading indicator
         
         if (!user) {
             if (!error) {
@@ -47,8 +53,11 @@
         
         else
         {
+            
+
             NSLog(@"FB ID: %@", [user objectForKey:USER_FB_ID]);
             if ([user objectForKey:USER_FB_ID] == NULL || [user objectForKey:USER_DISPLAY_NAME] == NULL) {
+             
                 NSLog(@"Retrieving facebook id and name");
                 [FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
                     if (!error) {
@@ -60,11 +69,13 @@
                         [user saveInBackground];
                         NSLog(@"Saved fbid, name, file");
                         [self performSegueWithIdentifier:@"tripsSegue" sender:self.view];
+                      
                     }
                 }];
             } else {
-                NSLog(@"User logged in");
+                                 NSLog(@"User logged in");
                 [self performSegueWithIdentifier:@"tripsSegue" sender:self.view];
+             
             }
         }
         
@@ -78,6 +89,7 @@
         //        [self performSegueWithIdentifier:@"tripsSegue" sender:self.view];
         //  }
     }];
+   
     
 }
 
