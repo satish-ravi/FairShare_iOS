@@ -17,7 +17,6 @@
 {
     
     [super viewDidLoad];
-    [PFUser logOut];
     
 	// Do any additional setup after loading the view, typically from a nib.
     if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
@@ -25,8 +24,6 @@
  
         [self performSegueWithIdentifier:@"tripsSegue" sender:self.view];
  
-       
-        
     }
     
 }

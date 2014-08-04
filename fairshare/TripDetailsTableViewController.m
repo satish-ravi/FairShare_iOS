@@ -12,6 +12,7 @@
 {
     CLLocationManager *locManager;
     CLGeocoder *geocoder;
+    UIBarButtonItem *totalButton;
 }
 
 
@@ -32,9 +33,9 @@
     locManager = [[CLLocationManager alloc]init];
     geocoder = [[CLGeocoder alloc]init];
     
-    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:BAR_BTN_TOTAL style:UIBarButtonItemStylePlain target:self action:@selector(totalButtonPressed)];
+    totalButton = [[UIBarButtonItem alloc] initWithTitle:BAR_BTN_TOTAL style:UIBarButtonItemStylePlain target:self action:@selector(totalButtonPressed)];
     NSMutableArray *barbuttonItems = [NSMutableArray arrayWithArray:self.navigationItem.rightBarButtonItems];
-    [barbuttonItems addObject:saveButton];
+    [barbuttonItems addObject:totalButton];
     self.navigationItem.rightBarButtonItems = [NSArray arrayWithArray:barbuttonItems];
     NSLog(@"%@", self.navigationItem.rightBarButtonItems);
     
@@ -44,6 +45,10 @@
 }
 
 - (void)loadData {
+    if (_currentTrip.totalCost != 0) {
+        totalButton.title = [NSString stringWithFormat:@"$ %.2f" ,_currentTrip.totalCost];
+    }
+    NSLog(@"%@", [self.tableView headerViewForSection:1]);
     PFQuery *query = [PFQuery queryWithClassName:[TripUser parseClassName]];
     [query whereKey:TRID_ID equalTo:_currentTrip];
     [query orderByAscending:TRID_USER_DISPLAY_NAME];
@@ -60,6 +65,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    self.lblTripName.text = _currentTrip.tripName;
     if (_fromCreate) {
         _fromCreate = NO;
     } else {
@@ -97,11 +103,13 @@
     cell.lblCommuter.text = tripUser.displayName;
     cell.lblStartLocation.text = tripUser.startLocation;
     cell.lblEndLocation.text = tripUser.endLocation;
+    cell.backgroundColor = [UIColor clearColor];
     if (_isActive) {
         if (cell.lblStartLocation.text == NULL) {
             cell.lblStartLocation.text = TAP_TO_START;
         } else if (cell.lblEndLocation.text == NULL) {
             cell.lblEndLocation.text = TAP_TO_DROP;
+            cell.backgroundColor = [UIColor greenColor];
         }
     }
     [cell.imgFBPicture setProfileID:tripUser.commuterId];

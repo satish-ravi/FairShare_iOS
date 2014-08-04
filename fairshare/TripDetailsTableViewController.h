@@ -15,6 +15,7 @@
 @property (nonatomic) NSMutableArray *currentTripUsers;
 @property (nonatomic) BOOL fromCreate;
 @property (nonatomic) BOOL isActive;
+@property (weak, nonatomic) IBOutlet UILabel *lblTripName;
 -(void) loadData;
 
 @end

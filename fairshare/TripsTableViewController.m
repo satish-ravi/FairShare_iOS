@@ -17,6 +17,7 @@
 @implementation TripsTableViewController
 {
     NSArray *tableData;
+    UIActivityIndicatorView *activityView;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -38,19 +39,24 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     //self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self.navigationItem setHidesBackButton:YES];
-    tableData = [NSArray arrayWithObjects:nil, nil];
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     NSLog(@"Ref: %@", self.refreshControl);
     [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refreshControl;
+    activityView=[[UIActivityIndicatorView alloc]     initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     
+    activityView.center=self.view.center;
+    
+    [self.view addSubview:activityView];
 }
 
 - (void)loadData {
-    tableData = [NSArray arrayWithObjects:nil, nil];
+    self.tableView.allowsSelection = NO;
     [PFCloud callFunctionInBackground:CLOUD_GET_TRIP_NAME
                        withParameters:@{CLOUD_GET_TRIP_PARAM: [[PFUser currentUser] objectForKey:USER_FB_ID]}
                                 block:^(NSArray *result, NSError *error) {
+                                    [activityView stopAnimating];
+                                    self.tableView.allowsSelection = YES;
                                     if (!error) {
                                         tableData = result;
                                         [self.tableView reloadData];
@@ -68,6 +74,7 @@
         [self performSegueWithIdentifier:@"tripDetailsSegue" sender:self.view];
     } else {
         NSLog(@"Reloading");
+        [activityView startAnimating];
         [self loadData];
     }
 }
