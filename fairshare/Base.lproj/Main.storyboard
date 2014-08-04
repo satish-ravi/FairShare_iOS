@@ -96,9 +96,14 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Fair Share" id="cR9-QC-rpa">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Cnx-on-Qau">
+                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="Cnx-on-Qau">
                             <connections>
                                 <segue destination="bVv-aY-NbD" kind="push" identifier="addTripSegue" id="n8u-Oh-XaB"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Logout" id="CXa-cF-gNn">
+                            <connections>
+                                <action selector="logoutClicked:" destination="o4C-eP-l18" id="KDI-Up-EVe"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

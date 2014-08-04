@@ -19,6 +19,10 @@ NSString * const ALERT_CANCEL = @"Cancel";
 NSString * const ALERT_CONFIRM = @"Confirm";
 CGFloat    const SELECTED_ROW_HEIGHT = 85;
 NSString * const CHOOSE_ADDRESS = @"Select Matching Address:";
+NSString * const LOGOUT_TITLE = @"Confirm Logout";
+NSString * const LOGOUT_MESSAGE = @"Do you want to log out?";
+NSString * const ALERT_YES = @"Yes";
+NSString * const ALERT_NO = @"No";
 
 NSString * const USER_FB_ID = @"fbId";
 NSString * const USER_DISPLAY_NAME = @"displayName";

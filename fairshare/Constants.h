@@ -20,6 +20,10 @@ extern NSString * const ALERT_CANCEL;
 extern NSString * const ALERT_CONFIRM;
 extern CGFloat    const SELECTED_ROW_HEIGHT;
 extern NSString * const CHOOSE_ADDRESS;
+extern NSString * const LOGOUT_TITLE;
+extern NSString * const LOGOUT_MESSAGE;
+extern NSString * const ALERT_YES;
+extern NSString * const ALERT_NO;
 
 // Parse Constants
 extern NSString * const USER_FB_ID;

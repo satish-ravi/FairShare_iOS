@@ -173,5 +173,27 @@
     _fromCreate = YES;
     _createdTripUsers = tripUsers;
 }
+- (IBAction)logoutClicked:(id)sender {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:LOGOUT_TITLE
+                                                    message:LOGOUT_MESSAGE
+                                                   delegate:self
+                                          cancelButtonTitle:ALERT_NO
+                                          otherButtonTitles:ALERT_YES, nil];
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch(buttonIndex) {
+        case 0: //"No" pressed
+            //do something?
+            break;
+        case 1: //"Yes" pressed
+            //here you pop the viewController
+            [PFUser logOut];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            break;
+    }
+}
 
 @end
