@@ -32,7 +32,7 @@
     locManager = [[CLLocationManager alloc]init];
     geocoder = [[CLGeocoder alloc]init];
     
-    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Total" style:UIBarButtonItemStylePlain target:self action:@selector(totalButtonPressed)];
+    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:BAR_BTN_TOTAL style:UIBarButtonItemStylePlain target:self action:@selector(totalButtonPressed)];
     NSMutableArray *barbuttonItems = [NSMutableArray arrayWithArray:self.navigationItem.rightBarButtonItems];
     [barbuttonItems addObject:saveButton];
     self.navigationItem.rightBarButtonItems = [NSArray arrayWithArray:barbuttonItems];
@@ -45,8 +45,8 @@
 
 - (void)loadData {
     PFQuery *query = [PFQuery queryWithClassName:[TripUser parseClassName]];
-    [query whereKey:@"tripId" equalTo:_currentTrip];
-    [query orderByAscending:@"displayName"];
+    [query whereKey:TRID_ID equalTo:_currentTrip];
+    [query orderByAscending:TRID_USER_DISPLAY_NAME];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             _currentTripUsers = [NSMutableArray arrayWithArray:objects];
@@ -121,7 +121,6 @@
     locManager.desiredAccuracy = kCLLocationAccuracyBest;
     
     TripDetailsTableViewCell *cell = (TripDetailsTableViewCell*) [tableView cellForRowAtIndexPath:indexPath];
-    NSLog(@"Tapped: %@", indexPath);
     NSLog(@"Start: %@", cell.lblStartLocation.text);
     NSLog(@"End: %@", cell.lblEndLocation.text);
     if ([TAP_TO_START isEqualToString:cell.lblStartLocation.text] || [TAP_TO_DROP isEqualToString:cell.lblEndLocation.text]) {
@@ -182,6 +181,7 @@
     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
     UITextField *txtTotal = [alert textFieldAtIndex:0];
     txtTotal.keyboardType = UIKeyboardTypeDecimalPad;
+    txtTotal.text = [NSString stringWithFormat:@"%.2f", _currentTrip.totalCost];
     [alert show];
 }
 

@@ -44,8 +44,8 @@
 
 - (void)loadData {
     tableData = [NSArray arrayWithObjects:nil, nil];
-    [PFCloud callFunctionInBackground:@"getTripByUser"
-                       withParameters:@{@"userId": [[PFUser currentUser] objectForKey:USER_FB_ID]}
+    [PFCloud callFunctionInBackground:CLOUD_GET_TRIP_NAME
+                       withParameters:@{CLOUD_GET_TRIP_PARAM: [[PFUser currentUser] objectForKey:USER_FB_ID]}
                                 block:^(NSArray *result, NSError *error) {
                                     if (!error) {
                                         tableData = result;

@@ -56,14 +56,14 @@
 - (IBAction)chooseFriendsClicked:(UIButton *)sender {
     NSString *tripName = [_txtTripName.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     if ([tripName length] == 0) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Empty Trip Name" message:@"Please enter trip name before choosing friends" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Dismiss", nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:ALERT_EMPTY_TRIP_TITLE message:ALERT_EMPTY_TRIP_MESSAGE delegate:nil cancelButtonTitle:nil otherButtonTitles:ALERT_DISMISS, nil];
         [alert show];
     }
     else if (FBSession.activeSession.isOpen) {
         if (self.friendPickerController == nil) {
             // Create friend picker, and get data loaded into it.
             self.friendPickerController = [[FBFriendPickerViewController alloc] init];
-            self.friendPickerController.title = @"Pick Friends";
+            self.friendPickerController.title = PICK_FRIENDS_TITLE;
             self.friendPickerController.delegate = self;
         }
         
@@ -80,8 +80,7 @@
     trip.createdBy = [PFUser currentUser];
     tripUserArr = [[NSMutableArray alloc] init];
     int count = 0;
-    // we pick up the users from the selection, and create a string that we use to update the text view
-    // at the bottom of the display; note that self.selection is a property inherited from our base class
+    
     for (id<FBGraphUser> user in self.friendPickerController.selection) {
         TripUser *tripUser = [[TripUser alloc] init];
         tripUser.tripId = trip;
@@ -108,7 +107,7 @@
             }
         }];
     } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No friends selected" message:@"Please select at least one friend" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Dismiss", nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:ALERT_NO_FRIENDS_TITLE message:ALERT_NO_FRIENDS_MESSAGE delegate:nil cancelButtonTitle:nil otherButtonTitles:ALERT_DISMISS, nil];
         [alert show];
     }
 }

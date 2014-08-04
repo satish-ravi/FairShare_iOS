@@ -24,10 +24,23 @@ extern NSString * const LOGOUT_TITLE;
 extern NSString * const LOGOUT_MESSAGE;
 extern NSString * const ALERT_YES;
 extern NSString * const ALERT_NO;
+extern NSString * const ALERT_DISMISS;
+extern NSString * const ALERT_EMPTY_TRIP_TITLE;
+extern NSString * const ALERT_EMPTY_TRIP_MESSAGE;
+extern NSString * const PICK_FRIENDS_TITLE;
+extern NSString * const BAR_BTN_TOTAL;
+extern NSString * const ALERT_NO_FRIENDS_TITLE;
+extern NSString * const ALERT_NO_FRIENDS_MESSAGE;
+extern NSString * const ALERT_NO_ADDRESS_TITLE;
+extern NSString * const ALERT_NO_ADDRESS_MESSAGE;
 
 // Parse Constants
 extern NSString * const USER_FB_ID;
 extern NSString * const USER_DISPLAY_NAME;
 extern NSString * const USER_PICTURE;
+extern NSString * const CLOUD_GET_TRIP_NAME;
+extern NSString * const CLOUD_GET_TRIP_PARAM;
+extern NSString * const TRID_ID;
+extern NSString * const TRID_USER_DISPLAY_NAME;
 
 @end

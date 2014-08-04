@@ -68,7 +68,7 @@
 		3114560E198AEB3A00CF01D8 /* EditLocTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditLocTableViewCell.h; sourceTree = "<group>"; };
 		3114560F198AEB3A00CF01D8 /* EditLocTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditLocTableViewCell.m; sourceTree = "<group>"; };
 		31145611198AEC5F00CF01D8 /* EditTripTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTripTableViewController.h; sourceTree = "<group>"; };
-		31145612198AEC5F00CF01D8 /* EditTripTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTripTableViewController.m; sourceTree = "<group>"; };
+		31145612198AEC5F00CF01D8 /* EditTripTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = EditTripTableViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3153D0FD19897FD3008B3267 /* Trip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trip.h; sourceTree = "<group>"; };
 		3153D0FE19897FD3008B3267 /* Trip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Trip.m; sourceTree = "<group>"; };
 		3167622B198DA7D00031FD29 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };

@@ -140,12 +140,12 @@
                     popup.cancelButtonIndex = [addList count];
                     [popup showInView:self.view];
                 } else {
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No address found" message:@"Uh oh. No address match the given address." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Dismiss", nil];
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:ALERT_NO_ADDRESS_TITLE message:ALERT_NO_ADDRESS_MESSAGE delegate:nil cancelButtonTitle:nil otherButtonTitles:ALERT_DISMISS, nil];
                     [alert show];
                     [sender becomeFirstResponder];
                 }
             } else {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No address found" message:@"Uh oh. No address match the given address." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Dismiss", nil];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:ALERT_NO_ADDRESS_TITLE message:ALERT_NO_ADDRESS_MESSAGE delegate:nil cancelButtonTitle:nil otherButtonTitles:ALERT_DISMISS, nil];
                 [alert show];
                 [sender becomeFirstResponder];
             }
