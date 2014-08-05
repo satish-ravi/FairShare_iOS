@@ -32,6 +32,10 @@ NSString * const ALERT_NO_FRIENDS_TITLE = @"No friends selected";
 NSString * const ALERT_NO_FRIENDS_MESSAGE = @"Please enter trip name before choosing friends";
 NSString * const ALERT_NO_ADDRESS_TITLE = @"No address found";
 NSString * const ALERT_NO_ADDRESS_MESSAGE = @"Uh oh. No address match the given address.";
+NSString * const ALERT_LOGIN_ERROR_TITLE = @"Log In Error";
+NSString * const ALERT_LOGIN_ERROR_MESSAGE = @"Uh oh. Facebook login failed.";
+NSString * const ALERT_LOGIN_CANCEL_TITLE = @"Log In Error";
+NSString * const ALERT_LOGIN_CANCEL_MESSAGE = @"Uh oh. The user cancelled the Facebook login.";
 
 NSString * const USER_FB_ID = @"fbId";
 NSString * const USER_DISPLAY_NAME = @"displayName";

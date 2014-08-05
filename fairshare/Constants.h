@@ -33,6 +33,10 @@ extern NSString * const ALERT_NO_FRIENDS_TITLE;
 extern NSString * const ALERT_NO_FRIENDS_MESSAGE;
 extern NSString * const ALERT_NO_ADDRESS_TITLE;
 extern NSString * const ALERT_NO_ADDRESS_MESSAGE;
+extern NSString * const ALERT_LOGIN_ERROR_TITLE;
+extern NSString * const ALERT_LOGIN_ERROR_MESSAGE;
+extern NSString * const ALERT_LOGIN_CANCEL_TITLE;
+extern NSString * const ALERT_LOGIN_CANCEL_MESSAGE;
 
 // Parse Constants
 extern NSString * const USER_FB_ID;

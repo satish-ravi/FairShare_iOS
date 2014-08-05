@@ -18,43 +18,39 @@
     
     [super viewDidLoad];
     
-	// Do any additional setup after loading the view, typically from a nib.
-    if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
+	if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
         NSLog(@"User logged in already");
- 
+        
         [self performSegueWithIdentifier:@"tripsSegue" sender:self.view];
- 
+        
     }
     
 }
 - (IBAction)loginClicked:(id)sender {
-   
-
-    NSArray *permissionsArray = @[ @"user_about_me", @"user_relationships", @"user_birthday", @"user_location"];
     
+    NSArray *permissionsArray = @[ @"user_about_me", @"user_relationships", @"user_birthday", @"user_location"];
+    [_activityIndicator startAnimating];
     // Login PFUser using facebook
     [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
-       //  [_activityIndicator stopAnimating]; // Hide loading indicator
+        [_activityIndicator stopAnimating]; // Hide loading indicator
         
         if (!user) {
             if (!error) {
                 NSLog(@"Uh oh. The user cancelled the Facebook login.");
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log In Error" message:@"Uh oh. The user cancelled the Facebook login." delegate:nil cancelButtonTitle:nil otherButtonTitles:ALERT_DISMISS, nil];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:ALERT_LOGIN_CANCEL_TITLE message:ALERT_LOGIN_CANCEL_MESSAGE delegate:nil cancelButtonTitle:nil otherButtonTitles:ALERT_DISMISS, nil];
                 [alert show];
             } else {
                 NSLog(@"Uh oh. An error occurred: %@", error);
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log In Error" message:[error description] delegate:nil cancelButtonTitle:nil otherButtonTitles:ALERT_DISMISS, nil];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:ALERT_LOGIN_ERROR_TITLE message:ALERT_LOGIN_CANCEL_MESSAGE delegate:nil cancelButtonTitle:nil otherButtonTitles:ALERT_DISMISS, nil];
                 [alert show];
             }
         }
         
         else
         {
-            
-
             NSLog(@"FB ID: %@", [user objectForKey:USER_FB_ID]);
             if ([user objectForKey:USER_FB_ID] == NULL || [user objectForKey:USER_DISPLAY_NAME] == NULL) {
-             
+                
                 NSLog(@"Retrieving facebook id and name");
                 [FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
                     if (!error) {
@@ -66,27 +62,18 @@
                         [user saveInBackground];
                         NSLog(@"Saved fbid, name, file");
                         [self performSegueWithIdentifier:@"tripsSegue" sender:self.view];
-                      
+                        
                     }
                 }];
             } else {
-                                 NSLog(@"User logged in");
+                NSLog(@"User logged in");
                 [self performSegueWithIdentifier:@"tripsSegue" sender:self.view];
-             
+                
             }
         }
         
-        
-        
-        //else if (user.isNew) {
-        //  NSLog(@"User with facebook signed up and logged in!");
-        //[self performSegueWithIdentifier:@"tripsSegue" sender:self.view];
-        //        } else {
-        //          NSLog(@"User with facebook logged in!");
-        //        [self performSegueWithIdentifier:@"tripsSegue" sender:self.view];
-        //  }
     }];
-   
+    
     
 }
 

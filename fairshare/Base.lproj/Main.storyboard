@@ -34,11 +34,16 @@
                                     <navigationItem title="FairShare" id="41H-SO-jTf"/>
                                 </items>
                             </navigationBar>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="hJg-lP-FGF">
+                                <rect key="frame" x="150" y="344" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="edu-Qa-pRQ"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="hJg-lP-FGF" id="0Td-Uj-La9"/>
                         <segue destination="o4C-eP-l18" kind="push" identifier="tripsSegue" id="mMf-4z-GK5"/>
                     </connections>
                 </viewController>
