@@ -34,7 +34,7 @@
     NSDictionary* address = placemark.addressDictionary;
     NSArray* addressLines = [address objectForKey:@"FormattedAddressLines"];
     NSString* line1 = [addressLines objectAtIndex:0];
-    return [line1 stringByAppendingString:[addressLines objectAtIndex:1]];
+    return [[line1 stringByAppendingString:@", "] stringByAppendingString:[addressLines objectAtIndex:1]];
 }
 
 +(NSArray*) getAddressesFromPlaceMarkArr:(NSArray*) placemarkArr {

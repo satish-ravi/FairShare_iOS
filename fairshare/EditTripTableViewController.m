@@ -15,7 +15,6 @@
 
 @implementation EditTripTableViewController {
     long selectedRow;
-    NSIndexPath *selectedIndex;
     CLGeocoder *geocoder;
     NSArray* placemarksList;
     int selectionType;
@@ -95,7 +94,6 @@
         }
     }
     selectedRow = currentRow;
-    selectedIndex = indexPath;
     [self.tableView reloadData];
 }
 
@@ -118,7 +116,7 @@
 }
 
 -(void) searchClickedWithField: (UITextField*) sender {
-    TripDetailsTableViewCell *cell = (TripDetailsTableViewCell*) [self.tableView cellForRowAtIndexPath:selectedIndex];
+    TripDetailsTableViewCell *cell = (TripDetailsTableViewCell*) [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:selectedRow inSection:0]];
     NSString* compareText;
     if (selectionType == 0) {
         compareText = cell.lblStartLocation.text;
