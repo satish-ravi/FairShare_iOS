@@ -72,6 +72,9 @@
         NSLog(@"Fetching");
         [self loadData];
     }
+    if (_isActive) {
+        totalButton.enabled = NO;
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -155,6 +158,7 @@
                     tripUser.startLocGeo =[PFGeoPoint geoPointWithLocation:newLocation];
                     tripUser.startLocation = address;
                     [tripUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                        [self refreshCurrentTrip];
                         [self.tableView reloadData];
                     }];
                     
@@ -166,6 +170,7 @@
                     [tripUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                         [tripUser fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
                             [_currentTripUsers replaceObjectAtIndex:indexPath.row withObject:object];
+                            [self refreshCurrentTrip];
                             [self.tableView reloadData];
                         }];
                     }];
@@ -180,6 +185,16 @@
         [manager stopUpdatingLocation];
         
     }
+}
+
+- (void) refreshCurrentTrip {
+    [_currentTrip fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        _currentTrip = (Trip*) object;
+        if (_currentTrip.startLocation != NULL && _currentTrip.endLocation != NULL) {
+            _isActive = NO;
+            totalButton.enabled = YES;
+        }
+    }];
 }
 
 
