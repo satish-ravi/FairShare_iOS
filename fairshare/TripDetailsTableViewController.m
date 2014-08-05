@@ -56,6 +56,7 @@
         if (!error) {
             _currentTripUsers = [NSMutableArray arrayWithArray:objects];
             [self.tableView reloadData];
+            [self refreshCurrentTrip];
         } else {
             // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);
@@ -68,12 +69,11 @@
     self.lblTripName.text = _currentTrip.tripName;
     if (_fromCreate) {
         _fromCreate = NO;
+        // Disable total button because on create, the locations wont be updated.
+        totalButton.enabled = NO;
     } else {
         NSLog(@"Fetching");
         [self loadData];
-    }
-    if (_isActive) {
-        totalButton.enabled = NO;
     }
 }
 
@@ -193,6 +193,8 @@
         if (_currentTrip.startLocation != NULL && _currentTrip.endLocation != NULL) {
             _isActive = NO;
             totalButton.enabled = YES;
+        } else {
+            totalButton.enabled = NO;
         }
     }];
 }

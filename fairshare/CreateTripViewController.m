@@ -96,7 +96,9 @@
         currentUsr.displayName = [[PFUser currentUser] objectForKey:USER_DISPLAY_NAME];
         [tripUserArr addObject:currentUsr];
         NSLog(@"%d friends selected", count);
+        [_activityIndicator startAnimating];
         [trip saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            [_activityIndicator stopAnimating];
             if (!error && succeeded) {
                 for (TripUser *tripUser in tripUserArr) {
                     [tripUser saveInBackground];

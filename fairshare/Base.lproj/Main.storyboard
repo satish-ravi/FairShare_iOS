@@ -352,11 +352,16 @@
                                     <action selector="chooseFriendsClicked:" destination="bVv-aY-NbD" eventType="touchUpInside" id="MK1-Ax-g3r"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="LJe-gc-3E5">
+                                <rect key="frame" x="150" y="289" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Create Trip" id="1DX-Ub-hYm"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="LJe-gc-3E5" id="dAV-wD-4PK"/>
                         <outlet property="txtTripName" destination="nH5-YU-aAj" id="QXA-tL-3MF"/>
                     </connections>
                 </viewController>

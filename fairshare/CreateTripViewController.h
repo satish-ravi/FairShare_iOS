@@ -16,5 +16,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtTripName;
 @property (retain, nonatomic) FBFriendPickerViewController *friendPickerController;
 @property (nonatomic, weak) id <CreateTripViewControllerDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @end
